@@ -50,47 +50,23 @@ type OAuthURLParams = {
  * @returns {Middleware<any>} Middleware that redirects to the OAuth URL.
  */
 export declare function getGoogleOAuthURL({ scopes, authClient, loginHint, prompt, accessType, includeGrantedScopes, }: OAuthURLParams): Middleware<any>;
-export type User = {
-    id: string;
+export type GoogleUser = {
+    iss: string;
+    azp: string;
+    aud: string;
+    sub: string;
     email: string;
-    email_verified: boolean;
-    name?: string;
-    first_name?: string;
-    last_name?: string;
-    picture?: string;
-    locale?: string;
-    role?: string;
-    phone_number?: string;
-    phone_number_verified?: boolean;
-    gender?: string;
-    date_of_birth?: string;
-    address?: {
-        street?: string;
-        city?: string;
-        state?: string;
-        postal_code?: string;
-        country?: string;
-    };
-    is_active?: boolean;
-    last_login?: string;
-    sign_up_date?: string;
-    updated_at?: string;
-    account_type?: string;
-    subscriptions?: Array<string>;
-    preferences?: {
-        theme?: string;
-        language?: string;
-    };
-    social_links?: {
-        facebook?: string;
-        twitter?: string;
-        linkedin?: string;
-        instagram?: string;
-    };
-    two_factor_enabled?: boolean;
-    is_verified?: boolean;
-    is_banned?: boolean;
-    custom_fields?: Record<string, any>;
+    email_verified: string;
+    at_hash: string;
+    name: string;
+    picture: string;
+    given_name: string;
+    family_name: string;
+    iat: string;
+    exp: string;
+    alg: string;
+    kid: string;
+    typ: string;
 };
 export interface Credentials {
     /**
@@ -126,7 +102,7 @@ export type CallbacksReturn = {
     /**
      * Callback function called when a user signs in successfully.
      *
-     * @param {User} user - The user object containing user details such as email, name, etc.
+     * @param {GoogleUser} user - The user object containing user details such as email, name, etc.
      * @returns {Promise<boolean>} - A promise that resolves to a boolean indicating whether the sign-in is allowed.
      *         If `false`, the sign-in will be rejected; if `true`, the sign-in will proceed.
      *
@@ -138,12 +114,12 @@ export type CallbacksReturn = {
      *     }
      * };
      */
-    signIn?: (user: User) => Promise<boolean>;
+    signIn?: (user: GoogleUser) => Promise<boolean>;
     /**
      * Callback function for handling JWT (JSON Web Token) creation or modification.
      *
      * @param {any} token - The token object that contains the user's authentication information.
-     * @param {User} [user] - The user object, which may be available depending on the context.
+     * @param {GoogleUser} [user] - The user object, which may be available depending on the context.
      * @returns {Promise<any>} - A promise that resolves to a possibly modified token or additional data to be included with the token.
      *
      * @example
@@ -155,12 +131,12 @@ export type CallbacksReturn = {
      *     }
      * };
      */
-    jwt?: (token: any, user?: User) => Promise<any>;
+    jwt?: (token: any, user: GoogleUser) => Promise<any>;
     /**
      * Callback function for handling user session management.
      *
      * @param {any} session - The session object containing session data.
-     * @param {User} user - The user object containing the authenticated user's information.
+     * @param {GoogleUser} user - The user object containing the authenticated user's information.
      * @returns {Promise<any>} - A promise that resolves to the modified session data or a session object.
      *
      * @example
@@ -172,7 +148,7 @@ export type CallbacksReturn = {
      *     }
      * };
      */
-    session?: (session: any, user: User) => Promise<any>;
+    session?: (session: any, user: GoogleUser) => Promise<any>;
 };
 export type Callbacks = (ctx: Context) => CallbacksReturn;
 /**
@@ -190,4 +166,4 @@ export declare function verifyGoogleToken({ authClient, onError, Callbacks, onSu
     onSuccess?: (tokens: Credentials, GaxiosResponse: any) => void | Promise<void>;
     Callbacks?: Callbacks;
 }): Middleware<any>;
-export {};
+export { };
