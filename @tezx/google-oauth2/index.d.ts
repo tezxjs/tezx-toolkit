@@ -1,5 +1,5 @@
-import { OAuth2Client } from 'google-auth-library';
-import { Middleware } from 'tezx';
+import { OAuth2Client } from 'googleapis-common';
+import { Context, Middleware } from 'tezx';
 /**
  * Configuration object for setting up Google OAuth2 authentication.
  *
@@ -185,7 +185,7 @@ export type Callbacks = {
  */
 export declare function verifyGoogleToken({ authClient, onError, Callbacks, onSuccess }: {
     authClient: OAuth2Client;
-    onError?: (error: string) => Promise<Response> | Response;
+    onError?: (error: string, ctx: Context) => Promise<Response> | Response;
     onSuccess?: (tokens: Credentials, GaxiosResponse: any) => void | Promise<void>;
     Callbacks: Callbacks;
 }): Middleware<any>;
