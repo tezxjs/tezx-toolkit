@@ -1,62 +1,42 @@
 {
-  "name": "@tezx/google-oauth2",
-  "version": "1.0.2",
-  "description": "Google OAuth2 middleware integration for TezX server framework — supports sign-in, token verification, and session handling.",
-  "main": "cjs/index.js",
-  "module": "index.js",
-  "types": "index.d.ts",
-  "typings": "index.d.ts",
+  "name": "tezx-app-example",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build:cjs": "tsc --module CommonJS --outDir dist/cjs --removeComments",
+    "build:esm": "tsc --module ESNext --outDir dist --removeComments",
+    "build:dts": "tsc --module ESNext --outDir dist --declaration --emitDeclarationOnly",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm && npm run build:dts",
+    "start": "node dist/index.js",
+    "nodemon": "nodemon src/index.ts",
+    "dev": "tsx watch src/index.ts",
+    "bun": "bun run --hot --watch src/index.ts",
+    "deno": "deno run --watch --allow-net  --allow-read --allow-env --unstable-sloppy-imports src/index.ts"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tezxjs/TezX-Middlewares.git"
+    "url": "git+https://github.com/tezxjs/tezx-app-example"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tezxjs/TezX-Middlewares/issues"
+    "url": "https://github.com/tezxjs/tezx-app-example"
   },
-  "homepage": "https://github.com/tezxjs/TezX-Middlewares#readme",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "require": "./cjs/index.js",
-      "types": "./index.d.ts",
-      "default": "./index.js"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
-  "files": [
-    "adapter/",
-    "cjs/",
-    "core/",
-    "helper/",
-    "middleware/",
-    "utils/",
-    "ws/",
-    "google",
-    "api",
-    "auth",
-    "login",
-    "oauth",
-    "index.js",
-    "index.d.ts"
-  ],
-  "keywords": [
-    "google-oauth",
-    "oauth2",
-    "tezx",
-    "middleware",
-    "typescript",
-    "nodejs",
-    "web-auth",
-    "google-auth",
-    "auth",
-    "signin",
-    "jwt",
-    "session",
-    "high-performance",
-    "web-framework"
-  ],
-  "author": "SRAKIB17",
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "MIT"
+  "homepage": "https://github.com/tezxjs/tezx-app-example",
+  "dependencies": {
+    "@googleapis/oauth2": "^1.0.7",
+    "@tezx/google-oauth2": "^1.0.4",
+    "tezx": "^1.0.60",
+    "tsx": "^4.19.2",
+    "typescript": "^5.8.2"
+  }
 }

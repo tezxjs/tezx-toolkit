@@ -122,7 +122,7 @@ export interface Credentials {
  * The Callbacks type defines the structure of the callbacks used during the authentication and session management process.
  * Each key corresponds to a specific stage of the authentication process.
  */
-export type Callbacks = {
+export type CallbacksReturn = {
     /**
      * Callback function called when a user signs in successfully.
      *
@@ -174,6 +174,7 @@ export type Callbacks = {
      */
     session?: (session: any, user: User) => Promise<any>;
 };
+export type Callbacks = (ctx: Context) => CallbacksReturn;
 /**
  * Middleware to verify the Google OAuth token and handle user authentication.
  * @param {Object} params - The verification parameters.
@@ -187,6 +188,6 @@ export declare function verifyGoogleToken({ authClient, onError, Callbacks, onSu
     authClient: OAuth2Client;
     onError?: (error: string, ctx: Context) => Promise<Response> | Response;
     onSuccess?: (tokens: Credentials, GaxiosResponse: any) => void | Promise<void>;
-    Callbacks: Callbacks;
+    Callbacks?: Callbacks;
 }): Middleware<any>;
 export {};
