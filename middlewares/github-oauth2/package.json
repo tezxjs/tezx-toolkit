@@ -1,6 +1,6 @@
 {
   "name": "@tezx/github-oauth2",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "GitHub OAuth2 middleware integration for the TezX server framework — supports GitHub sign-in, token verification, and session handling.",
   "main": "cjs/index.js",
   "module": "index.js",
@@ -13,7 +13,7 @@
   "bugs": {
     "url": "https://github.com/tezxjs/tezx-toolkit/issues"
   },
-  "homepage": "https://github.com/tezxjs/tezx-toolkit#readme",
+  "homepage": "https://github.com/tezxjs/tezx-toolkit/tree/main/middlewares/github-oauth2#readme",
   "exports": {
     ".": {
       "import": "./index.js",

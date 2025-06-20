@@ -1,6 +1,6 @@
 {
   "name": "@tezx/google-oauth2",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Google OAuth2 middleware integration for TezX server framework — supports sign-in, token verification, and session handling.",
   "main": "cjs/index.js",
   "module": "index.js",
@@ -8,12 +8,12 @@
   "typings": "index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/tezxjs/TezX-Middlewares.git"
+    "url": "https://github.com/tezxjs/tezx-toolkit.git"
   },
   "bugs": {
-    "url": "https://github.com/tezxjs/TezX-Middlewares/issues"
+    "url": "https://github.com/tezxjs/tezx-toolkit/issues"
   },
-  "homepage": "https://github.com/tezxjs/TezX-Middlewares#readme",
+  "homepage": "https://github.com/tezxjs/tezx-toolkit/tree/main/middlewares/google-oauth2#readme",
   "exports": {
     ".": {
       "import": "./index.js",

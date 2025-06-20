@@ -1,131 +1,92 @@
-অবশ্যই! এখানে ২০টা GitHub repo নামের সাজেশন দিলাম যেগুলোতে middleware, helper, router, devtools, adapter ইত্যাদি সব মিলিয়ে প্যাকেজ রাখতে পারো:
-
-1. tezx-stack
-2. tezx-monorepo
-3. tezx-unified
-4. tezx-kit
-5. tezx-core
-6. tezx-lab
-7. tezx-hub
-8. tezx-framework
-9. tezx-platform
-10. tezx-suite
-11. tezx-toolkit
-12. tezx-ecosystem
-13. tezx-modules
-14. tezx-components
-15. tezx-collection
-16. tezx-bundle
-17. tezx-complete
-18. tezx-infra
-19. tezx-system
-20. tezx-works
-
-**কোনটা বেশী পছন্দ হলে বলো, সেটার জন্য মোনোরেপো সেটআপ বা README লেখাও দিতে পারি!**
-
-“tezx-framework” নামটা দারুণ চয়েস, খুব প্রফেশনাল এবং স্পষ্ট যে এটা একটা পূর্ণাঙ্গ ফ্রেমওয়ার্ক।
-
-তাহলে আমি তোমার জন্য একটা বেসিক GitHub README.md এর ড্রাফট বানিয়ে দিলাম যেটা এই নামের সাথে ফিট করে — middleware, helper, router, devtools, adapters সব কিছুর একটা ওভারভিউ সহ।
 
 ---
 
-```md
-# TezX Framework
+# TezX Toolkit
 
-[![npm version](https://img.shields.io/npm/v/@tezx/framework.svg)](https://www.npmjs.com/package/@tezx/framework)
-[![License](https://img.shields.io/npm/l/@tezx/framework.svg)](https://opensource.org/licenses/MIT)
+The **TezX Toolkit** provides a powerful set of modular middlewares and developer utilities tailored for TezX-based applications. Whether you're building APIs, handling authentication, or inspecting app internals, these tools help you move fast and build with confidence.
 
 ---
 
-## Overview
+## 🌐 Available Middlewares
 
-**TezX Framework** is a modular, high-performance web framework built on top of the TezX ecosystem.  
-It provides a robust foundation for building modern server-side applications with support for:
+### 🔐 Google OAuth2
 
-- File-based routing with dynamic and optional parameters
-- Middleware system for global and route-scoped logic
-- WebSocket and Server-Sent Events (SSE) support
-- Static file serving
-- Environment adapters for Node.js, Deno, and Bun
-- Developer tools for debugging and route inspection
-- Utility helpers for environment loading, logging, and more
+Authenticate users with Google using the lightweight and flexible [`@tezx/google-oauth2`](https://www.npmjs.com/package/@tezx/google-oauth2) middleware. It simplifies the OAuth2 flow and integrates smoothly with TezX routing.
 
----
-
-## Repository Structure
-
-```
-
-tezx-framework/
-├── packages/
-│   ├── router/          # @tezx/router — file-based HTTP routing
-│   ├── middleware/      # Common middlewares like logging, auth, etc.
-│   ├── helper/          # Utilities: env loader, color output, port finder
-│   ├── devtools/        # Dev UI and debugging tools
-│   ├── adapters/        # Environment adapters: node, deno, bun
-│   ├── static/          # Static file server module
-│   └── example-app/     # Minimal example app using framework
-├── .github/             # GitHub workflows and issue templates
-├── README.md
-└── package.json
-
-````
-
----
-
-## Getting Started
-
-Install the core packages you need:
+**Latest Version:** ![npm version](https://img.shields.io/npm/v/@tezx/google-oauth2.svg)
 
 ```bash
-npm install @tezx/router @tezx/middleware @tezx/helper @tezx/devtools
-````
-
-Then, create your route files inside a `routes/` folder, add middleware, and start your server with your preferred adapter.
+npm install @tezx/google-oauth2
+# or
+yarn add @tezx/google-oauth2
+```
 
 ---
 
-## Example Route
+### 🐱 GitHub OAuth2
+
+Add GitHub login to your TezX app effortlessly with [`@tezx/github-oauth2`](https://www.npmjs.com/package/@tezx/github-oauth2). Ideal for developer tools, dashboards, and more.
+
+**Latest Version:** ![npm version](https://img.shields.io/npm/v/@tezx/github-oauth2.svg)
+
+```bash
+npm install @tezx/github-oauth2
+# or
+yarn add @tezx/github-oauth2
+```
+
+---
+
+## 🛠️ Helpers & Utilities
+
+### 🧪 DevTools
+
+The [`@tezx/devtools`](https://www.npmjs.com/package/@tezx/devtools) package offers a real-time web interface for inspecting routes, middleware, `.env` variables, and more — all within your running TezX server. Plug it in during development and get instant visibility.
+
+**Latest Version:** ![npm version](https://img.shields.io/npm/v/@tezx/devtools.svg)
+
+```bash
+npm install @tezx/devtools
+# or
+yarn add @tezx/devtools
+```
+
+Use with your TezX app:
 
 ```ts
-// routes/index.ts
-import type { Context } from "tezx";
+import { DevTools } from "@tezx/devtools";
 
-export const _GET = async (ctx: Context) => {
-  return ctx.send("Welcome to TezX Framework!");
-};
+app.get("/devtools", DevTools(app, {
+  // Optional:
+  // extraTabs(ctx) {
+  //   return [
+  //     {
+  //       tab: "custom",
+  //       label: "My Tab",
+  //       doc_title: "Custom Logic",
+  //       content: "<h1>Hello from Custom Tab</h1>"
+  //     }
+  //   ];
+  // }
+}));
 ```
 
 ---
 
-## Middleware Example
+## 📦 Install All in One
 
-```ts
-// routes/_middleware.ts
-import type { Context } from "tezx";
-
-export async function _MIDDLEWARE(ctx: Context, next: Function) {
-  console.log(`Request: ${ctx.method} ${ctx.path}`);
-  await next();
-}
+```bash
+npm install @tezx/google-oauth2 @tezx/github-oauth2 @tezx/devtools
+# or
+yarn add @tezx/google-oauth2 @tezx/github-oauth2 @tezx/devtools
 ```
 
 ---
 
-## Contributing
+## 🤝 Contributing
 
-Contributions, issues, and feature requests are welcome!
-Feel free to check [issues page](https://github.com/tezxjs/tezx-framework/issues).
+We love contributions! Visit individual package repositories for detailed contribution guidelines, issues, and PRs.
 
----
-
-## License
-
-MIT © Rakibul Islam
-
-```
+Want to suggest a middleware idea? Open an issue in the [main TezX repository](https://github.com/tezxjs/tezx).
 
 ---
-
-চাওলে এই repo-র জন্য package.json, tsconfig.json, এবং monorepo workspace সেটআপ করাও দিতে পারি! বলো।
-```
