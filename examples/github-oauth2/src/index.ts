@@ -1,7 +1,6 @@
 import { getGithubOAuthURL, GitHubOauthClient, verifyGithubToken } from "@tezx/github-oauth2";
 import { TezX } from "tezx";
-import { nodeAdapter } from "tezx/adapter";
-import { loadEnv } from "tezx/helper";
+import { nodeAdapter, loadEnv } from "tezx/node";
 import { logger } from "tezx/middleware";
 
 const env = loadEnv();
