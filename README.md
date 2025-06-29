@@ -21,6 +21,12 @@ npm install @tezx/google-oauth2
 yarn add @tezx/google-oauth2
 ```
 
+#### **Template**
+
+```bash
+npm create tezx google-auth -- --template google-oauth2 --y
+```
+
 ---
 
 ### 🐱 GitHub OAuth2
@@ -33,6 +39,12 @@ Add GitHub login to your TezX app effortlessly with [`@tezx/github-oauth2`](http
 npm install @tezx/github-oauth2
 # or
 yarn add @tezx/github-oauth2
+```
+
+#### **Template**
+
+```bash
+npm create tezx github-oauth -- --template github-oauth2 --y
 ```
 
 ---
@@ -69,16 +81,6 @@ app.get("/devtools", DevTools(app, {
   //   ];
   // }
 }));
-```
-
----
-
-## 📦 Install All in One
-
-```bash
-npm install @tezx/google-oauth2 @tezx/github-oauth2 @tezx/devtools
-# or
-yarn add @tezx/google-oauth2 @tezx/github-oauth2 @tezx/devtools
 ```
 
 ---
