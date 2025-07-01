@@ -21,6 +21,12 @@ Go to: [https://github.com/settings/developers](https://github.com/settings/deve
 npm install @tezx/github-oauth2
 ```
 
+#### **Template**
+
+```bash
+npm create tezx github-auth -- --template github-oauth2 --y
+```
+
 ---
 
 ## 📄 Example Usage

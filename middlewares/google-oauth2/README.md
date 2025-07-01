@@ -30,6 +30,12 @@ Or with Yarn:
 yarn add @tezx/google-oauth2 @googleapis/oauth2
 ```
 
+#### **Template**
+
+```bash
+npm create tezx google-auth -- --template google-oauth2 --y
+```
+
 ---
 
 ### 🚀 Quick Start

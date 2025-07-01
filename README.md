@@ -1,94 +1,84 @@
 
----
+# ⚡️ TezX Toolkit
 
-# TezX Toolkit
-
-The **TezX Toolkit** provides a powerful set of modular middlewares and developer utilities tailored for TezX-based applications. Whether you're building APIs, handling authentication, or inspecting app internals, these tools help you move fast and build with confidence.
+Welcome to the **TezX Toolkit** — a powerful suite of middlewares, helpers, and developer tools built specifically for the [TezX Framework](https://github.com/tezxjs/tezx). Whether you're building blazing-fast APIs, secure authentication systems, or full-stack apps — **TezX Toolkit** makes development smoother and faster 🚀.
 
 ---
 
 ## 🌐 Available Middlewares
 
-### 🔐 Google OAuth2
+> Modular plug-and-play middleware functions
 
-Authenticate users with Google using the lightweight and flexible [`@tezx/google-oauth2`](https://www.npmjs.com/package/@tezx/google-oauth2) middleware. It simplifies the OAuth2 flow and integrates smoothly with TezX routing.
+### 🔐 1. Google OAuth2
 
-**Latest Version:** ![npm version](https://img.shields.io/npm/v/@tezx/google-oauth2.svg)
+Easily integrate Google login to your app.
+📄 [Docs](./middlewares/google-oauth2/README.md)
 
-```bash
-npm install @tezx/google-oauth2
-# or
-yarn add @tezx/google-oauth2
-```
+### 🐱 2. GitHub OAuth2
 
-#### **Template**
-
-```bash
-npm create tezx google-auth -- --template google-oauth2 --y
-```
+Authenticate users using their GitHub accounts.
+📄 [Docs](./middlewares/github-oauth2/README.md)
 
 ---
 
-### 🐱 GitHub OAuth2
+## 🛠️ Helpers
 
-Add GitHub login to your TezX app effortlessly with [`@tezx/github-oauth2`](https://www.npmjs.com/package/@tezx/github-oauth2). Ideal for developer tools, dashboards, and more.
+> Ready-to-use developer tools for rapid dev
 
-**Latest Version:** ![npm version](https://img.shields.io/npm/v/@tezx/github-oauth2.svg)
+### 🧪 1. DevTools
 
-```bash
-npm install @tezx/github-oauth2
-# or
-yarn add @tezx/github-oauth2
-```
-
-#### **Template**
-
-```bash
-npm create tezx github-oauth -- --template github-oauth2 --y
-```
+Live inspection, logger, and performance profiler for your TezX app.
+📄 [Docs](./helpers/tezx-devtools/README.md)
 
 ---
 
-## 🛠️ Helpers & Utilities
+## 🧰 Utilities
 
-### 🧪 DevTools
+> Tiny but powerful building blocks
 
-The [`@tezx/devtools`](https://www.npmjs.com/package/@tezx/devtools) package offers a real-time web interface for inspecting routes, middleware, `.env` variables, and more — all within your running TezX server. Plug it in during development and get instant visibility.
+### 🖼 1. View Engine
 
-**Latest Version:** ![npm version](https://img.shields.io/npm/v/@tezx/devtools.svg)
+Supports templating with:
+`ejs`, `pug`, `handlebars`, `nunjucks`, and `mustache`.
+📄 [Docs](./utilities/view-engine/README.md)
+<!-- 
 
-```bash
-npm install @tezx/devtools
-# or
-yarn add @tezx/devtools
-```
+### 📁 3. File Upload Utility
 
-Use with your TezX app:
+Safe file uploads with MIME checking and size limits. -->
 
-```ts
-import { DevTools } from "@tezx/devtools";
+<!-- ### 🕓 4. Scheduler
 
-app.get("/devtools", DevTools(app, {
-  // Optional:
-  // extraTabs(ctx) {
-  //   return [
-  //     {
-  //       tab: "custom",
-  //       label: "My Tab",
-  //       doc_title: "Custom Logic",
-  //       content: "<h1>Hello from Custom Tab</h1>"
-  //     }
-  //   ];
-  // }
-}));
-```
+Run periodic tasks or cron jobs within your TezX app. -->
 
 ---
 
 ## 🤝 Contributing
 
-We love contributions! Visit individual package repositories for detailed contribution guidelines, issues, and PRs.
+We ❤️ contributions!
 
-Want to suggest a middleware idea? Open an issue in the [main TezX repository](https://github.com/tezxjs/tezx).
+* Fork the [main TezX repository](https://github.com/tezx-toolkit/tezx)
+* Browse open [issues](https://github.com/tezx-toolkit/tezx/issues)
+* Create a pull request with your new middleware, helper, or fix
+
+Got an idea for a new utility? Open an issue and share it with the community.
+
+---
+<!-- 
+## 📦 Install
+
+You can install packages individually:
+
+```bash
+npm install @tezx/view-engine
+npm install @tezx/github-oauth2
+``` -->
+
+## 🔗 Links
+
+* [🌍 TezX Documentation](https://tezx.papernxt.com/)
+* [🐙 GitHub Repo](https://github.com/tezxjs/tezx)
+* [📦 NPM Packages](https://www.npmjs.com/org/tezx)
+<!-- * [💬 Discord Community](https://discord.gg/tezx) -->
 
 ---
