@@ -2,6 +2,8 @@
 
 A flexible, powerful, and runtime-aware view engine utility for server-side rendering (SSR) with support for **Node.js**, **Bun**, and **Deno**.
 
+**Latest Version:** ![npm version](https://img.shields.io/npm/v/@tezx/view-engine.svg)
+
 > 🔧 Supports `ejs`, `pug`, `handlebars`, `nunjucks`, and `mustache` templates out of the box.
 
 ---
@@ -24,6 +26,32 @@ npm install @tezx/view-engine
 # or
 bun add @tezx/view-engine
 ````
+
+### **Template**
+
+```bash
+npm create tezx view-engine -- --template view-engine --y
+```
+
+### **Require**
+
+```bash
+# EJS
+npm install ejs
+
+# Pug (formerly Jade)
+npm install pug
+
+# Handlebars
+npm install handlebars
+
+# Nunjucks (Jinja2-like templating)
+npm install nunjucks
+
+# Mustache
+npm install mustache
+
+```
 
 ---
 

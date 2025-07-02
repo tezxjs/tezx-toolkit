@@ -1,6 +1,6 @@
 import * as path from "node:path";
 import { Environment, GlobalConfig } from "tezx/helper";
-export const version = "v1.0.2";
+export const version = "v1.0.3";
 export class ViewEngine {
     engine;
     viewsPath;

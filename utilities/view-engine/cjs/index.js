@@ -36,7 +36,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ViewEngine = exports.version = void 0;
 const path = __importStar(require("node:path"));
 const helper_1 = require("tezx/helper");
-exports.version = "v1.0.2";
+exports.version = "v1.0.3";
 class ViewEngine {
     engine;
     viewsPath;

@@ -1,4 +1,4 @@
-export declare const version = "v1.0.2";
+export declare const version = "v1.0.3";
 /**
  * Supported template engines
  * @typedef {"ejs" | "pug" | "hbs" | "nunjucks" | "mustache"} TemplateEngine
