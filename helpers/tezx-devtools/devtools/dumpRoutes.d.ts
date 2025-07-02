@@ -6,8 +6,8 @@ export type RouteEntry = {
     appliedMiddlewares: string[];
 };
 export declare function dumpRoutes(TezX: TezX<any>): {
-    endpoint: string;
-    pattern: string;
+    endpoint: any;
+    pattern: any;
     method: any;
     appliedMiddlewares: any[];
 }[];

@@ -1,6 +1,6 @@
 {
   "name": "@tezx/devtools",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "Developer tools for the TezX framework, including route inspector, cookie manager, and real-time diagnostics. Lightweight and plug-and-play compatible with Node.js, Bun, and Deno.",
   "main": "cjs/index.js",
   "module": "index.js",

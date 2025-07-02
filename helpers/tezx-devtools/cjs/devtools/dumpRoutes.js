@@ -30,8 +30,8 @@ function dumpRoutes(TezX) {
     for (const [path, handlers] of app.routers) {
         for (const [method, handler] of handlers) {
             staticRoutes.push({
-                endpoint: `/${path}`,
-                pattern: `/${path}`,
+                endpoint: path?.replace(/^string:\/\//, "/").replace(/^regex:\/\//, ""),
+                pattern: path,
                 method,
                 appliedMiddlewares: [...(handler?.middlewares || [])].map((r) => r?.name || "anonymous"),
             });
