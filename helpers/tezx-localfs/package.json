@@ -1,6 +1,6 @@
 {
     "name": "@tezx/localfs",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Local file system helper for TezX framework. Easily upload, read, and delete files on local storage.",
     "keywords": [
         "tezx",
@@ -38,7 +38,7 @@
     "bugs": {
         "url": "https://github.com/tezxjs/tezx-toolkit/issues"
     },
-    "homepage": "https://github.com/tezxjs/tezx-toolkit/blob/main/helpers/tezx-devtools/README.md",
+    "homepage": "https://github.com/tezxjs/tezx-toolkit/blob/main/helpers/tezx-localfs/README.md",
     "engines": {
         "node": ">=18",
         "bun": ">=1.0"
