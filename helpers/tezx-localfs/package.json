@@ -1,0 +1,49 @@
+{
+    "name": "@tezx/localfs",
+    "version": "1.0.0",
+    "description": "Local file system helper for TezX framework. Easily upload, read, and delete files on local storage.",
+    "keywords": [
+        "tezx",
+        "localfs",
+        "filesystem",
+        "upload",
+        "file-storage",
+        "nodejs",
+        "bun",
+        "deno"
+    ],
+    "license": "MIT",
+    "main": "cjs/index.js",
+    "module": "index.js",
+    "types": "index.d.ts",
+    "files": [
+        "index.d.ts",
+        "index.js",
+        "mimeMap.d.ts",
+        "mimeMap.js",
+        "cjs/"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.js",
+            "require": "./cjs/index.js",
+            "types": "./index.d.ts",
+            "default": "./index.js"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tezxjs/tezx-toolkit"
+    },
+    "bugs": {
+        "url": "https://github.com/tezxjs/tezx-toolkit/issues"
+    },
+    "homepage": "https://github.com/tezxjs/tezx-toolkit/blob/main/helpers/tezx-devtools/README.md",
+    "engines": {
+        "node": ">=18",
+        "bun": ">=1.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}
