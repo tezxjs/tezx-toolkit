@@ -134,15 +134,15 @@ const sessionManager = new SessionManager({
 });
 ```
 
-| Option          | Type                    | Description                            |          |                    |
-| --------------- | ----------------------- | -------------------------------------- | -------- | ------------------ |
-| sessionName     | `string`                | Name of the cookie key                 |          |                    |
-| sessionId       | `(ctx) => string`       | Custom session ID generator (optional) |          |                    |
-| cookie.maxAge   | `number`                | Expiry in ms                           |          |                    |
-| cookie.secure   | `boolean`               | Only send cookie on HTTPS              |          |                    |
-| cookie.httpOnly | `boolean`               | Prevent JS access to cookie            |          |                    |
-| cookie.sameSite | \`"lax" \\              | "strict" \\                            | "none"\` | SameSite attribute |
-| storage         | `SessionStorageAdapter` | Custom storage engine                  |          |                    |
+| Option          | Type                    | Description                            |
+| --------------- | ----------------------- | -------------------------------------- |
+| sessionName     | `string`                | Name of the cookie key                 |
+| sessionId       | `(ctx) => string`       | Custom session ID generator (optional) |
+| cookie.maxAge   | `number`                | Expiry in ms                           |
+| cookie.secure   | `boolean`               | Only send cookie on HTTPS              |
+| cookie.httpOnly | `boolean`               | Prevent JS access to cookie            |
+| cookie.sameSite | `"lax" \| "strict" \| "none"` | SameSite attribute             |
+| storage         | `SessionStorageAdapter` | Custom storage engine                  |
 
 ---
 
