@@ -1,17 +1,16 @@
 {
-    "name": "@tezx/localfs",
-    "version": "1.0.3",
+    "name": "@tezx/session",
+    "version": "1.0.1",
     "type": "module",
-    "description": "Local file system helper for TezX framework. Easily upload, read, and delete files on local storage.",
+    "description": "A simple and extensible session middleware for TezX framework with pluggable storage and secure cookie support.",
     "keywords": [
         "tezx",
-        "localfs",
-        "filesystem",
-        "upload",
-        "file-storage",
-        "nodejs",
-        "bun",
-        "deno"
+        "session",
+        "middleware",
+        "typescript",
+        "cookie",
+        "storage",
+        "redis"
     ],
     "license": "MIT",
     "main": "dist/index.js",
@@ -22,12 +21,13 @@
     ],
     "exports": {
         ".": {
-            "import": "./dist/index.js",
-            "require": "./dist/cjs/index.js",
+            "import": "./dist/index.mjs",
+            "require": "./dist/index.js",
             "types": "./dist/index.d.ts",
             "default": "./dist/index.mjs"
         }
     },
+    "sideEffects": false,
     "repository": {
         "type": "git",
         "url": "https://github.com/tezxjs/tezx-toolkit"
@@ -35,12 +35,11 @@
     "bugs": {
         "url": "https://github.com/tezxjs/tezx-toolkit/issues"
     },
-    "homepage": "https://github.com/tezxjs/tezx-toolkit/blob/main/helpers/tezx-localfs/README.md",
+    "homepage": "https://github.com/tezxjs/tezx-toolkit/blob/main/helpers/tezx-session/README.md",
     "engines": {
         "node": ">=18",
         "bun": ">=1.0"
     },
-    "sideEffects": false,
     "publishConfig": {
         "access": "public"
     }
