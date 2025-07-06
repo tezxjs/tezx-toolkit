@@ -178,14 +178,15 @@ export class RedisStore implements SessionStorageAdapter {
 
     try {
       const parsed = JSON.parse(data);
+      const redisStore = this;
       return {
         sessionId: parsed.sessionId,
         data: parsed.data,
         async save() {
-          // save handled outside
+          await redisStore.set(this.sessionId, this);
         },
         async destroy() {
-          // destroy handled outside
+          await redisStore.destroy(this.sessionId);
         },
       } as SessionInstance;
     } catch {
