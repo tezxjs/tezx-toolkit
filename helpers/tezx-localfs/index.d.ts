@@ -1,7 +1,9 @@
+import { Context, Router } from 'tezx';
+
 /**
  * Options to configure the LocalFS storage.
  */
-export interface LocalFSOptions {
+interface LocalFSOptions {
     /** The base folder to store files */
     basePath?: string;
     /** The base URL for public access */
@@ -15,11 +17,11 @@ export interface LocalFSOptions {
     /** Allowed MIME types for uploads */
     allowedTypes?: string[];
 }
-import { Context, Router } from "tezx";
+
 /**
  * Local file storage system with runtime (Node/Deno) compatibility.
  */
-export declare class LocalFS {
+declare class LocalFS {
     #private;
     private basePath;
     private publicUrl;
@@ -78,3 +80,5 @@ export declare class LocalFS {
      */
     getPublicUrl(fileName: string): string;
 }
+
+export { LocalFS, type LocalFSOptions };

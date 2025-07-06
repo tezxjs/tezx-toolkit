@@ -1,8 +1,6 @@
-'use strict';
-
-var path = require('node:path');
-var helper = require('tezx/helper');
-var tezx = require('tezx');
+import path from 'node:path';
+import { Environment } from 'tezx/helper';
+import { Router } from 'tezx';
 
 const mimeMap = {
   "123": "application/vnd.lotus-1-2-3",
@@ -914,7 +912,7 @@ class LocalFS {
   autoRenameOnConflict;
   maxFileSize;
   allowedTypes;
-  runtime = helper.Environment.getEnvironment;
+  runtime = Environment.getEnvironment;
   /**
    * Creates a new LocalFS instance.
    * @param options - Storage configuration options
@@ -1027,7 +1025,7 @@ class LocalFS {
   serveFileResponse(config) {
     const onError = config?.onError || ((error, ctx) => ctx.json({ success: false, message: error }));
     if (!this.allowPublicAccess) throw new Error("Public access is disabled");
-    const router = new tezx.Router();
+    const router = new Router();
     router.get(path.join(this.publicUrl, "/*filename"), async (ctx) => {
       return ctx.sendFile(path.join(this.basePath, ctx?.req?.params?.filename)).catch((error) => {
         return onError(error?.message, ctx);
@@ -1103,4 +1101,4 @@ class LocalFS {
   }
 }
 
-exports.LocalFS = LocalFS;
+export { LocalFS };
