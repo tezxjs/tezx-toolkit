@@ -133,17 +133,17 @@ function profiler(options = {}) {
     };
     if (metrics.includes("memory")) {
       result.memoryUsage = {
-        rss: endMem?.rss - startMem?.rss,
-        heapTotal: endMem?.heapTotal - startMem?.heapTotal,
-        heapUsed: endMem?.heapUsed - startMem?.heapUsed,
-        external: endMem?.external - startMem?.external,
-        arrayBuffers: endMem?.arrayBuffers - startMem?.arrayBuffers
+        rss: Math.max(0, endMem.rss - startMem.rss),
+        heapTotal: Math.max(0, endMem?.heapTotal - startMem?.heapTotal),
+        heapUsed: Math.max(0, endMem?.heapUsed - startMem?.heapUsed),
+        external: Math.max(0, endMem?.external - startMem?.external),
+        arrayBuffers: Math.max(0, endMem?.arrayBuffers - startMem?.arrayBuffers)
       };
     }
     if (metrics.includes("cpu")) {
       result.cpuUsage = {
-        user: endCpu.user - startCpu.user,
-        system: endCpu.system - startCpu.system
+        user: Math.max(0, endCpu.user - startCpu.user),
+        system: Math.max(0, endCpu.system - startCpu.system)
       };
     }
     GlobalConfig.debugging.info(`[Profiler] ${ctx.req.method} ${ctx.req.pathname} -> ${result.duration} ms`, result.memoryUsage || "");
