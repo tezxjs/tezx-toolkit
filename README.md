@@ -19,6 +19,11 @@ Easily integrate Google login to your app.
 Authenticate users using their GitHub accounts.
 📄 [Docs](./middlewares/github-oauth2/README.md)
 
+### ⚙️ 3. TezX Profiler 🔍
+
+A middleware to profile and monitor the performance of your TezX app routes.
+📄 [Docs](./middlewares/tezx-profiler/README.md) *(Coming soon)*
+
 ---
 
 ## 🛠️ Helpers
@@ -29,6 +34,33 @@ Authenticate users using their GitHub accounts.
 
 Live inspection, logger, and performance profiler for your TezX app.
 📄 [Docs](./helpers/tezx-devtools/README.md)
+Got it! Here's the updated Markdown with fitting emojis added for flair and clarity:
+
+---
+
+## 🛠️ Helpers
+
+> Ready-to-use developer tools for rapid development with TezX.
+
+### 🧪 1. DevTools 🔍
+
+Live inspection, logger, and performance profiler for your TezX app.
+📄 [Docs](./helpers/tezx-devtools/README.md)
+
+---
+
+### 📁 2. Localfs 💾
+
+`@tezx/localfs` is a simple, runtime-agnostic local file storage library that works with Node.js, Deno, and Bun.
+📄 [Docs](./helpers/tezx-localfs/README.md)
+
+---
+
+### 🔐 3. tezx-session 🛡️
+
+Session management helper for TezX applications to handle user sessions efficiently.
+
+📄 [Docs](./helpers/tezx-session/README.md)
 
 ---
 
