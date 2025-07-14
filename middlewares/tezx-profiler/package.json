@@ -1,6 +1,6 @@
 {
     "name": "@tezx/profiler",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "type": "module",
     "description": "Lightweight profiling middleware for TezX framework with built-in system stats UI and rotating file storage.",
     "keywords": [
