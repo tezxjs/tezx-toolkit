@@ -57,7 +57,7 @@ declare class LocalFS {
      * @param fileName - File name
      * @returns File contents as a Buffer
      */
-    readFile(fileName: string): Promise<Buffer<ArrayBufferLike> | Uint8Array<ArrayBuffer>>;
+    readFile(fileName: string): Promise<any>;
     /**
      * Lists all files in a directory.
      * @param folder - Optional sub-folder
