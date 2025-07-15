@@ -1,0 +1,53 @@
+{
+  "name": "@tezx/rbac",
+  "version": "1.0.0",
+  "description": "🔐 Flexible Role-Based Access Control (RBAC) middleware for the TezX framework with support for dynamic role IDs.",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist/"
+  ],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "keywords": [
+    "tezx",
+    "rbac",
+    "authorization",
+    "middleware",
+    "typescript",
+    "role-based-access",
+    "plugin",
+    "permissions",
+    "access-control",
+    "auth"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tezxjs/tezx-toolkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tezxjs/tezx-toolkit/issues"
+  },
+  "homepage": "https://github.com/tezxjs/tezx-toolkit/tree/main/utilities/tezx-rbac#readme",
+  "engines": {
+    "node": ">=18",
+    "bun": ">=1.0",
+    "deno": ">=1.36"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Rakibul Islam",
+    "url": "https://github.com/srakib17"
+  }
+}

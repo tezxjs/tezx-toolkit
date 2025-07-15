@@ -68,11 +68,20 @@ Session management helper for TezX applications to handle user sessions efficien
 
 > Tiny but powerful building blocks
 
-### 🖼 1. View Engine
+### 🖼 1. View Engine 🎨
 
 Supports templating with:
 `ejs`, `pug`, `handlebars`, `nunjucks`, and `mustache`.
 📄 [Docs](./utilities/view-engine/README.md)
+
+---
+
+### 🛡️ 2. RBAC 🔐
+
+Flexible Role-Based Access Control (RBAC) middleware for the TezX framework with support for dynamic role IDs.
+📄 [Docs](./utilities/tezx-rbac/README.md)
+
+---
 <!-- 
 
 ### 📁 3. File Upload Utility
