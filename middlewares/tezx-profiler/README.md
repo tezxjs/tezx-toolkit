@@ -29,7 +29,7 @@ npm install @tezx/profiler
 
 ### Basic Setup
 
-```typescript
+```ts
 import { TezX } from 'tezx';
 import { profiler, createRotatingFileStorage } from '@tezx/profiler';
 
@@ -55,7 +55,7 @@ app.get('/', (ctx) => ctx.json({ message: 'Hello World' }));
 
 Visit your app at:
 
-```
+```bash
 http://localhost:3000/__profiler
 ```
 

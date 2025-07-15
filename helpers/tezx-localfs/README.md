@@ -149,7 +149,7 @@ app.use(storage.serveFileResponse());
 
 Then files are available at:
 
-```
+```bash
 /uploads/photo.jpg
 ```
 

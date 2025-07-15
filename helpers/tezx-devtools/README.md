@@ -127,7 +127,7 @@ type Options = {
 
 **Using `tezx/router`**
 
-```
+```bash
 my-app/
 ├── routes/
 │   ├── _middleware.ts
