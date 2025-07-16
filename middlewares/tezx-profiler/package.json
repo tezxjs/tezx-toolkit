@@ -1,7 +1,11 @@
 {
     "name": "@tezx/profiler",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "type": "module",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "typings": "dist/index.d.ts",
     "description": "Lightweight profiling middleware for TezX framework with built-in system stats UI and rotating file storage.",
     "keywords": [
         "tezx",
@@ -15,18 +19,14 @@
         "bun"
     ],
     "license": "MIT",
-    "main": "dist/index.js",
-    "module": "dist/index.mjs",
-    "types": "dist/index.d.ts",
     "files": [
         "dist/"
     ],
     "exports": {
         ".": {
-            "import": "./dist/index.js",
+            "import": "./dist/index.mjs",
             "require": "./dist/cjs/index.js",
-            "types": "./dist/index.d.ts",
-            "default": "./dist/index.mjs"
+            "types": "./dist/index.d.ts"
         }
     },
     "repository": {

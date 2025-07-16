@@ -1,9 +1,9 @@
-export declare const version = "v1.0.3";
+declare const version = "v1.0.4";
 /**
  * Supported template engines
  * @typedef {"ejs" | "pug" | "hbs" | "nunjucks" | "mustache"} TemplateEngine
  */
-export type TemplateEngine = "ejs" | "pug" | "hbs" | "nunjucks" | "mustache";
+type TemplateEngine = "ejs" | "pug" | "hbs" | "nunjucks" | "mustache";
 /**
  * Configuration options for the ViewEngine
  * @typedef {Object} ViewEngineOptions
@@ -11,7 +11,7 @@ export type TemplateEngine = "ejs" | "pug" | "hbs" | "nunjucks" | "mustache";
  * @property {boolean} [autoescape=true] - Auto-escape variables in Nunjucks (optional)
  * @property {Partial<Record<TemplateEngine, string>>} [extensionOverride] - Override default file extensions per engine
  */
-export interface ViewEngineOptions {
+interface ViewEngineOptions {
     cache?: boolean;
     autoescape?: boolean;
     extensionOverride?: Partial<Record<TemplateEngine, string>>;
@@ -19,7 +19,7 @@ export interface ViewEngineOptions {
 /**
  * Class for rendering server-side templates using various engines like EJS, Pug, Handlebars, etc.
  */
-export declare class ViewEngine {
+declare class ViewEngine {
     #private;
     private engine;
     private viewsPath;
@@ -42,3 +42,5 @@ export declare class ViewEngine {
     */
     render(templateName: string, data?: Record<string, any>): Promise<string>;
 }
+
+export { type TemplateEngine, ViewEngine, type ViewEngineOptions, version };

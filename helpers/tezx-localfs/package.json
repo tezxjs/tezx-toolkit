@@ -1,7 +1,11 @@
 {
     "name": "@tezx/localfs",
-    "version": "1.0.4",
+    "version": "1.0.5",
     "type": "module",
+    "main": "dist/index.js",
+    "module": "dist/index.mjs",
+    "types": "dist/index.d.ts",
+    "typings": "dist/index.d.ts",
     "description": "Local file system helper for TezX framework. Easily upload, read, and delete files on local storage.",
     "keywords": [
         "tezx",
@@ -14,18 +18,14 @@
         "deno"
     ],
     "license": "MIT",
-    "main": "dist/index.js",
-    "module": "dist/index.mjs",
-    "types": "dist/index.d.ts",
     "files": [
         "dist/"
     ],
     "exports": {
         ".": {
-            "import": "./dist/index.js",
-            "require": "./dist/cjs/index.js",
-            "types": "./dist/index.d.ts",
-            "default": "./dist/index.mjs"
+            "require": "./dist/index.js",
+            "import": "./dist/index.mjs",
+            "types": "./dist/index.d.ts"
         }
     },
     "repository": {
