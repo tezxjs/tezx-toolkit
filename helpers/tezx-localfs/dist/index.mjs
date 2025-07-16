@@ -1101,4 +1101,4 @@ class LocalFS {
   }
 }
 
-export { LocalFS };
+export { LocalFS, LocalFS as default };

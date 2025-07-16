@@ -81,4 +81,4 @@ declare class LocalFS {
     getPublicUrl(fileName: string): string;
 }
 
-export { LocalFS, type LocalFSOptions };
+export { LocalFS, type LocalFSOptions, LocalFS as default };

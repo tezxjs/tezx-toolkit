@@ -1,5 +1,7 @@
 'use strict';
 
+Object.defineProperty(exports, '__esModule', { value: true });
+
 var path = require('node:path');
 var helper = require('tezx/helper');
 var tezx = require('tezx');
@@ -1104,3 +1106,4 @@ class LocalFS {
 }
 
 exports.LocalFS = LocalFS;
+exports.default = LocalFS;
