@@ -1,5 +1,5 @@
-import { OAuth2Client } from 'googleapis-common';
-import { Context, Middleware } from 'tezx';
+import { OAuth2Client } from "googleapis-common";
+import { Context, Middleware } from "tezx";
 /**
  * Configuration object for setting up Google OAuth2 authentication.
  *
@@ -41,7 +41,7 @@ type OAuthURLParams = {
     state?: string;
     loginHint?: string;
     prompt?: string;
-    accessType?: 'online' | 'offline';
+    accessType?: "online" | "offline";
     includeGrantedScopes?: boolean;
 };
 /**
@@ -49,7 +49,7 @@ type OAuthURLParams = {
  * @param {OAuthURLParams} params - The parameters for generating the OAuth URL.
  * @returns {Middleware<any>} Middleware that redirects to the OAuth URL.
  */
-export declare function getGoogleOAuthURL({ scopes, authClient, loginHint, prompt, accessType, includeGrantedScopes, }: OAuthURLParams): Middleware<any>;
+export declare function getGoogleOAuthURL<T extends Record<string, any> = {}, Path extends string = any>({ scopes, authClient, loginHint, prompt, accessType, includeGrantedScopes, }: OAuthURLParams): Middleware<T, Path>;
 export type GoogleUser = {
     iss: string;
     azp: string;
@@ -68,6 +68,14 @@ export type GoogleUser = {
     kid: string;
     typ: string;
 };
+declare module "tezx" {
+    interface BaseContext<T extends Record<string, any> = {}, Path extends string = any> {
+        google: {
+            oauth_url: string;
+            user?: GoogleUser;
+        };
+    }
+}
 export interface Credentials {
     /**
      * This field is only present if the access_type parameter was set to offline in the authentication request. For details, see Refresh tokens.
@@ -160,10 +168,10 @@ export type Callbacks = (ctx: Context) => CallbacksReturn;
  * @param {Function} [params.onSuccess] - Optional success handler after verification.
  * @returns {Middleware<any>} The middleware for verifying the Google token.
  */
-export declare function verifyGoogleToken({ authClient, onError, Callbacks, onSuccess }: {
+export declare function verifyGoogleToken<T extends Record<string, any> = {}, Path extends string = any>({ authClient, onError, Callbacks, onSuccess, }: {
     authClient: OAuth2Client;
     onError?: (error: string, ctx: Context) => Promise<Response> | Response;
     onSuccess?: (tokens: Credentials, GaxiosResponse: any) => void | Promise<void>;
     Callbacks?: Callbacks;
-}): Middleware<any>;
-export { };
+}): Middleware<T, Path>;
+export {};

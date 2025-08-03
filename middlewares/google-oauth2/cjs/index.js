@@ -10,10 +10,10 @@ function GoogleOauthClient(config) {
     const oauth2Client = new oauth2_1.auth.OAuth2(clientId, clientSecret, redirectUri);
     return oauth2Client;
 }
-function getGoogleOAuthURL({ scopes = ['openid', 'email', 'profile'], authClient, loginHint, prompt = 'consent select_account', accessType = 'offline', includeGrantedScopes = true, }) {
+function getGoogleOAuthURL({ scopes = ["openid", "email", "profile"], authClient, loginHint, prompt = "consent select_account", accessType = "offline", includeGrantedScopes = true, }) {
     return (ctx, next) => {
         let state = `req-${(0, helper_1.generateID)()}`;
-        ctx.header('state', state);
+        ctx.setHeader("state", state);
         const url = authClient.generateAuthUrl({
             access_type: accessType,
             scope: scopes,
@@ -22,14 +22,14 @@ function getGoogleOAuthURL({ scopes = ['openid', 'email', 'profile'], authClient
             prompt,
             include_granted_scopes: includeGrantedScopes,
         });
-        ctx.state.set('google_oauth_url', url);
+        ctx.google = { ...ctx.google, oauth_url: url };
         if (next) {
             return next();
         }
         return ctx.redirect(url);
     };
 }
-function verifyGoogleToken({ authClient, onError, Callbacks, onSuccess }) {
+function verifyGoogleToken({ authClient, onError, Callbacks, onSuccess, }) {
     return async (ctx, next) => {
         try {
             const q = ctx.req.query;
@@ -56,7 +56,10 @@ function verifyGoogleToken({ authClient, onError, Callbacks, onSuccess }) {
                 if (user.aud !== authClient?._clientId) {
                     throw new Error("Invalid client ID");
                 }
-                ctx.state.set('user', user);
+                ctx.google = {
+                    ...ctx.google,
+                    user: user
+                };
                 let callback = Callbacks?.(ctx);
                 if (callback?.signIn) {
                     const allowed = await callback.signIn(user);

@@ -1,14 +1,14 @@
-import { auth } from '@googleapis/oauth2';
-import { generateID } from 'tezx/helper';
+import { auth } from "@googleapis/oauth2";
+import { generateID } from "tezx/helper";
 export function GoogleOauthClient(config) {
     const { clientId, clientSecret, redirectUri } = config;
     const oauth2Client = new auth.OAuth2(clientId, clientSecret, redirectUri);
     return oauth2Client;
 }
-export function getGoogleOAuthURL({ scopes = ['openid', 'email', 'profile'], authClient, loginHint, prompt = 'consent select_account', accessType = 'offline', includeGrantedScopes = true, }) {
+export function getGoogleOAuthURL({ scopes = ["openid", "email", "profile"], authClient, loginHint, prompt = "consent select_account", accessType = "offline", includeGrantedScopes = true, }) {
     return (ctx, next) => {
         let state = `req-${generateID()}`;
-        ctx.header('state', state);
+        ctx.setHeader("state", state);
         const url = authClient.generateAuthUrl({
             access_type: accessType,
             scope: scopes,
@@ -17,14 +17,14 @@ export function getGoogleOAuthURL({ scopes = ['openid', 'email', 'profile'], aut
             prompt,
             include_granted_scopes: includeGrantedScopes,
         });
-        ctx.state.set('google_oauth_url', url);
+        ctx.google = { ...ctx.google, oauth_url: url };
         if (next) {
             return next();
         }
         return ctx.redirect(url);
     };
 }
-export function verifyGoogleToken({ authClient, onError, Callbacks, onSuccess }) {
+export function verifyGoogleToken({ authClient, onError, Callbacks, onSuccess, }) {
     return async (ctx, next) => {
         try {
             const q = ctx.req.query;
@@ -51,7 +51,10 @@ export function verifyGoogleToken({ authClient, onError, Callbacks, onSuccess })
                 if (user.aud !== authClient?._clientId) {
                     throw new Error("Invalid client ID");
                 }
-                ctx.state.set('user', user);
+                ctx.google = {
+                    ...ctx.google,
+                    user: user
+                };
                 let callback = Callbacks?.(ctx);
                 if (callback?.signIn) {
                     const allowed = await callback.signIn(user);

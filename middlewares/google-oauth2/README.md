@@ -33,7 +33,7 @@ yarn add @tezx/google-oauth2 @googleapis/oauth2
 #### **Template**
 
 ```bash
-npm create tezx google-auth -- --template google-oauth2 --y
+npm create tezx@latest google-auth -- --template google-oauth2 --y
 ```
 
 ---
@@ -60,7 +60,7 @@ app.get('/auth/google', getGoogleOAuthURL({
   authClient: client,
   scopes: ['openid','email','profile'],
 }), (ctx) => {
-  return ctx.redirect(ctx.state.get('google_oauth_url'));
+  return ctx.redirect(ctx.google?.oauth_url);
 });
 
 // 3. Callback route, verify token and establish session
@@ -133,7 +133,7 @@ export function GoogleOauthClient(config: GoogleOauthConfig): OAuth2Client;
 
 ### `getGoogleOAuthURL(params) → Middleware`
 
-Generate and store the Google authentication URL in `ctx.state`.
+Generate and store the Google authentication URL in `ctx.google?.oauth_url`.
 
 ```ts
 interface OAuthURLParams {
@@ -147,7 +147,7 @@ interface OAuthURLParams {
 
 /**
  * Middleware that adds `state` header, generates auth URL, and redirects.
- * On success: ctx.state.get('google_oauth_url') contains the URL.
+ * On success: ctx.google?.oauth_url contains the URL.
  */
 export function getGoogleOAuthURL(params: OAuthURLParams): Middleware<any>;
 ```
