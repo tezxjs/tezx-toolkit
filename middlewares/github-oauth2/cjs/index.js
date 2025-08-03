@@ -4,19 +4,19 @@ exports.getGithubOAuthURL = getGithubOAuthURL;
 exports.GitHubOauthClient = GitHubOauthClient;
 exports.verifyGithubToken = verifyGithubToken;
 const helper_1 = require("tezx/helper");
-function getGithubOAuthURL({ authClient, scopes = ['read:user', 'user:email'], state, allowSignup = true, }) {
+function getGithubOAuthURL({ authClient, scopes = ["read:user", "user:email"], state, allowSignup = true, }) {
     return (ctx, next) => {
-        const generatedState = state || `req-${(0, helper_1.generateID)()}`;
-        ctx.header('state', generatedState);
-        const scopeParam = encodeURIComponent(scopes.join(' '));
-        const signupParam = allowSignup ? 'true' : 'false';
+        const generatedState = state || `req-${(0, helper_1.generateUUID)()}`;
+        ctx.setHeader("state", generatedState);
+        const scopeParam = encodeURIComponent(scopes.join(" "));
+        const signupParam = allowSignup ? "true" : "false";
         const url = `https://github.com/login/oauth/authorize` +
             `?client_id=${authClient.clientId}` +
             `&redirect_uri=${encodeURIComponent(authClient.redirectUri)}` +
             `&scope=${scopeParam}` +
             `&state=${generatedState}` +
             `&allow_signup=${signupParam}`;
-        ctx.state.set('github_oauth_url', url);
+        ctx.github = { ...ctx.github, oauth_url: url };
         if (next) {
             return next();
         }
@@ -43,11 +43,11 @@ function verifyGithubToken({ authClient, onError, onSuccess, Callbacks, }) {
                     return onError(msg, ctx);
                 throw new Error(msg);
             }
-            const tokenRes = await fetch('https://github.com/login/oauth/access_token', {
-                method: 'POST',
+            const tokenRes = await fetch("https://github.com/login/oauth/access_token", {
+                method: "POST",
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
+                    Accept: "application/json",
+                    "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
                     client_id: authClient.clientId,
@@ -60,25 +60,28 @@ function verifyGithubToken({ authClient, onError, onSuccess, Callbacks, }) {
             if (!tokens.access_token) {
                 throw new Error("Failed to get access token");
             }
-            const userRes = await fetch('https://api.github.com/user', {
+            const userRes = await fetch("https://api.github.com/user", {
                 headers: {
                     Authorization: `Bearer ${tokens.access_token}`,
-                    'User-Agent': 'custom-oauth-client',
+                    "User-Agent": "custom-oauth-client",
                 },
             });
             const user = await userRes.json();
             if (!user.email) {
-                const emailRes = await fetch('https://api.github.com/user/emails', {
+                const emailRes = await fetch("https://api.github.com/user/emails", {
                     headers: {
                         Authorization: `Bearer ${tokens.access_token}`,
-                        'User-Agent': 'custom-oauth-client',
+                        "User-Agent": "custom-oauth-client",
                     },
                 });
                 const emails = await emailRes.json();
                 const primaryEmail = emails.find((e) => e.primary && e.verified);
                 user.email = primaryEmail?.email;
             }
-            ctx.state.set('user', user);
+            ctx.github = {
+                ...ctx.github,
+                user: user
+            };
             const callback = Callbacks?.(ctx);
             if (callback?.signIn) {
                 const allowed = await callback.signIn(user);
