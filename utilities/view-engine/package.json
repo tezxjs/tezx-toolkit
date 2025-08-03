@@ -1,22 +1,24 @@
 {
   "name": "@tezx/view-engine",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A flexible and powerful template rendering engine for Tezx with SSR support and cross-runtime compatibility (Node, Bun, Deno).",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
+  "main": "index.js",
+  "module": "index.mjs",
+  "types": "index.d.ts",
+  "typings": "index.d.ts",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/index.d.ts"
+      "import": "./index.mjs",
+      "require": "./cjs/index.js",
+      "types": "./index.d.ts"
     }
   },
   "sideEffects": false,
   "files": [
-    "dist/"
+    "index.js",
+    "index.mjs",
+    "index.d.ts"
   ],
   "keywords": [
     "tezx",

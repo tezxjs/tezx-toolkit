@@ -1,10 +1,6 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var path = require('node:path');
-var helper = require('tezx/helper');
-var tezx = require('tezx');
+import path from 'node:path';
+import { Router } from 'tezx';
+import { Environment, extensionExtract } from 'tezx/helper';
 
 const mimeMap = {
   "123": "application/vnd.lotus-1-2-3",
@@ -906,7 +902,6 @@ const mimeMap = {
 };
 
 function getMimeTypeFromExtension(ext) {
-  ext = ext.replace(/^\./, "").toLowerCase();
   return mimeMap[ext] || null;
 }
 class LocalFS {
@@ -916,7 +911,7 @@ class LocalFS {
   autoRenameOnConflict;
   maxFileSize;
   allowedTypes;
-  runtime = helper.Environment.getEnvironment;
+  runtime = Environment.getEnvironment;
   /**
    * Creates a new LocalFS instance.
    * @param options - Storage configuration options
@@ -1029,7 +1024,7 @@ class LocalFS {
   serveFileResponse(config) {
     const onError = config?.onError || ((error, ctx) => ctx.json({ success: false, message: error }));
     if (!this.allowPublicAccess) throw new Error("Public access is disabled");
-    const router = new tezx.Router();
+    const router = new Router();
     router.get(path.join(this.publicUrl, "/*filename"), async (ctx) => {
       return ctx.sendFile(path.join(this.basePath, ctx?.req?.params?.filename)).catch((error) => {
         return onError(error?.message, ctx);
@@ -1056,8 +1051,7 @@ class LocalFS {
     }
   }
   #getMimeType(fileName) {
-    const ext = path.extname(fileName).replace(".", "").toLowerCase();
-    return getMimeTypeFromExtension(ext) || "application/octet-stream";
+    return getMimeTypeFromExtension(extensionExtract(fileName).toLowerCase()) || "application/octet-stream";
   }
   async #resolveFileName(filePath) {
     let counter = 1;
@@ -1105,5 +1099,4 @@ class LocalFS {
   }
 }
 
-exports.LocalFS = LocalFS;
-exports.default = LocalFS;
+export { LocalFS, LocalFS as default };

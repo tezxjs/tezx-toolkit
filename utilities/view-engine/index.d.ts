@@ -1,4 +1,4 @@
-declare const version = "v1.0.6";
+declare const version = "v1.0.7";
 /**
  * Supported template engines
  * @typedef {"ejs" | "pug" | "hbs" | "nunjucks" | "mustache"} TemplateEngine

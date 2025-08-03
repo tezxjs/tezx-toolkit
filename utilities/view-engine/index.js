@@ -1,12 +1,35 @@
-import * as path from 'node:path';
-import { Environment, GlobalConfig } from 'tezx/helper';
+'use strict';
 
-const version = "v1.0.6";
+Object.defineProperty(exports, '__esModule', { value: true });
+
+var path = require('node:path');
+var helper = require('tezx/helper');
+
+function _interopNamespaceDefault(e) {
+  var n = Object.create(null);
+  if (e) {
+    Object.keys(e).forEach(function (k) {
+      if (k !== 'default') {
+        var d = Object.getOwnPropertyDescriptor(e, k);
+        Object.defineProperty(n, k, d.get ? d : {
+          enumerable: true,
+          get: function () { return e[k]; }
+        });
+      }
+    });
+  }
+  n.default = e;
+  return Object.freeze(n);
+}
+
+var path__namespace = /*#__PURE__*/_interopNamespaceDefault(path);
+
+const version = "v1.0.7";
 class ViewEngine {
   engine;
   viewsPath;
   templateCache = /* @__PURE__ */ new Map();
-  runtime = Environment.getEnvironment;
+  runtime = helper.Environment.getEnvironment;
   // "node" | "bun" | "deno"
   options;
   /**
@@ -41,7 +64,7 @@ class ViewEngine {
     };
     const ext = this.options.extensionOverride[this.engine] ?? extMap[this.engine];
     if (!ext) throw new Error(`Unsupported template engine: ${this.engine}`);
-    const filePath = path.join(this.viewsPath, `${templateName}${ext}`);
+    const filePath = path__namespace.join(this.viewsPath, `${templateName}${ext}`);
     try {
       switch (this.engine) {
         case "ejs": {
@@ -81,7 +104,7 @@ class ViewEngine {
           throw new Error(`No renderer found for engine: ${this.engine}`);
       }
     } catch (err) {
-      GlobalConfig.debugging.error(
+      helper.GlobalConfig.debugging.error(
         `[ViewEngine:${this.runtime}] Error rendering '${templateName}': ${err.message}`
       );
       throw err;
@@ -123,4 +146,6 @@ class ViewEngine {
   }
 }
 
-export { ViewEngine, ViewEngine as default, version };
+exports.ViewEngine = ViewEngine;
+exports.default = ViewEngine;
+exports.version = version;

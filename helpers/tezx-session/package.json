@@ -1,6 +1,6 @@
 {
     "name": "@tezx/session",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "type": "module",
     "description": "A simple and extensible session middleware for TezX framework with pluggable storage and secure cookie support.",
     "keywords": [
@@ -13,18 +13,19 @@
         "redis"
     ],
     "license": "MIT",
-    "main": "dist/index.js",
-    "module": "dist/index.mjs",
-    "types": "dist/index.d.ts",
+    "main": "index.js",
+    "module": "index.mjs",
+    "types": "index.d.ts",
     "files": [
-        "dist/"
+        "index.js",
+        "index.mjs",
+        "index.d.ts"
     ],
     "exports": {
         ".": {
-            "import": "./dist/index.mjs",
-            "require": "./dist/index.js",
-            "types": "./dist/index.d.ts",
-            "default": "./dist/index.mjs"
+            "import": "./index.mjs",
+            "require": "./index.js",
+            "types": "./index.d.ts"
         }
     },
     "sideEffects": false,

@@ -30,10 +30,10 @@ interface PluginConfig<T extends string[]> {
     onDeny?: OnDenyFn<T>;
 }
 declare class RBAC<T extends string[]> {
-    plugin: (config: PluginConfig<T>) => Middleware;
+    plugin: (config: PluginConfig<T>) => Middleware<any>;
     authorize: (permissionKey: T[number]) => Middleware<T>;
 }
-declare function plugin<T extends string[] = any>(config: PluginConfig<T>): Middleware;
+declare function plugin<T extends string[] = any>(config: PluginConfig<T>): Middleware<any>;
 declare function authorize<T extends string[] = any>(permissionKey: T[number]): Middleware<T>;
 
 export { type DenyError, type IsAuthorizedFn, type LoadPermissionsFn, type OnDenyFn, type Role, type RolePermissionMap, authorize, RBAC as default, plugin };
