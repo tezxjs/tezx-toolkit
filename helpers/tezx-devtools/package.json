@@ -1,12 +1,12 @@
 {
   "name": "@tezx/devtools",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Developer tools for the TezX framework, including route inspector, cookie manager, and real-time diagnostics. Lightweight and plug-and-play compatible with Node.js, Bun, and Deno.",
   "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
-  "typings": "dist/index.d.ts",
+  "main": "cjs/index.cjs",
+  "module": "index.js",
+  "types": "index.d.ts",
+  "typings": "index.d.ts",
   "scripts": {},
   "repository": {
     "type": "git",
@@ -18,9 +18,9 @@
   "homepage": "https://github.com/tezxjs/tezx-toolkit/tree/main/helpers/tezx-devtools#readme",
   "exports": {
     ".": {
-      "import": "./dist/index.mjs",
-      "require": "./dist/cjs/index.js",
-      "types": "./dist/index.d.ts"
+      "import": "./index.js",
+      "require": "./cjs/index.js",
+      "types": "./index.d.ts"
     }
   },
   "sideEffects": false,
