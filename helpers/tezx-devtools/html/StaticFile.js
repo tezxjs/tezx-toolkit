@@ -1,5 +1,5 @@
 export function StaticFile(ctx, app) {
-    const staticMap = Object.keys(app.staticFile);
+    const staticMap = Object.keys(app.staticFile || {});
     const rawJSON = JSON.stringify(staticMap.map(r => {
         const [method, path] = r.split(" ");
         return {
