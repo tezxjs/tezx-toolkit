@@ -68,7 +68,6 @@ function Routes(ctx, app) {
       font-size: 1.25rem;
       margin-bottom: 0.5rem;
       font-weight: 600;
-      color: #334155;
     }
   </style>
 
@@ -111,7 +110,6 @@ function Routes(ctx, app) {
                         ">${hn.method} <small style="opacity: 0.8;">(middleware)</small></span>`
         : `<span style="
                           font-size: 14px;
-                          color: #333;
                         ">${hn.method}</span>`}
                 </td>
                 <td>${hn.handlerNames.join(", ")}</td>

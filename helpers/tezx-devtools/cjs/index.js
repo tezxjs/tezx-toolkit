@@ -290,7 +290,7 @@ function DevTools(app, options = { disableTabs: [] }) {
                 position: fixed;
                 bottom: 20px;
                 right: 20px;
-                background: #323232;
+                background: var(--accent);
                 color: white;
                 padding: 10px 16px;
                 border-radius: 8px;

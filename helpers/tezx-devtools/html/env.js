@@ -39,39 +39,6 @@ export const app = new TezX({
     </tr>`;
     return `
   <style>
-    .tabs {
-      margin-bottom: 1rem;
-    }
-    .tabs a {
-      display: inline-block;
-      margin-right: 1rem;
-      text-decoration: none;
-      font-weight: 500;
-      color: #0f172a;
-      cursor: pointer;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-
-    table th, table td {
-      padding: 0.5rem;
-      border: 1px solid #e2e8f0;
-      text-align: left;
-    }
-
-    table td button.copy-btn {
-      background: #f8fafc;
-      border: none;
-      padding: 0.3rem 0.4rem;
-      border-radius: 0.375rem;
-      cursor: pointer;
-      color: #334155;
-      transition: background 0.2s ease;
-    }
-
     .search-container {
       margin-bottom: 1rem;
     }
