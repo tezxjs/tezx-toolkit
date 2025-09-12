@@ -48,7 +48,7 @@ function verifyGoogleToken({ authClient, onError, Callbacks, onSuccess, }) {
                 throw new Error("Missing authorization code");
             }
             else {
-                const { tokens, res: gaxiosResponse } = await authClient.getToken(q.code);
+                const { tokens, res: gaxiosResponse } = await authClient.getToken(decodeURIComponent(q.code));
                 authClient.setCredentials(tokens);
                 const idToken = tokens?.id_token;
                 const tokenRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${idToken}`);

@@ -1,6 +1,6 @@
 {
   "name": "@tezx/google-oauth2",
-  "version": "1.0.11",
+  "version": "1.0.12",
   "description": "Google OAuth2 middleware integration for TezX server framework — supports sign-in, token verification, and session handling.",
   "main": "cjs/index.js",
   "module": "index.js",
