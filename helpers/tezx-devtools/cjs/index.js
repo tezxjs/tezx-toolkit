@@ -3,9 +3,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DevTools = DevTools;
 const helper_1 = require("tezx/helper");
 const index_js_1 = require("./html/index.js");
-function DevTools(app, options = { disableTabs: [] }) {
-    let { disableTabs, extraTabs } = options;
+function DevTools(app, options = {
+    disableTabs: [],
+    enable: true,
+}) {
+    let { disableTabs } = options;
     return async (ctx) => {
+        if (!options?.enable) {
+            return ctx
+                .status(404)
+                .json({ error: "Devtools not enabled in this environment" });
+        }
         let extraTabs = await (typeof options.extraTabs === "function"
             ? options.extraTabs(ctx)
             : []);

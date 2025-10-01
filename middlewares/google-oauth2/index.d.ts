@@ -69,7 +69,7 @@ export type GoogleUser = {
     typ: string;
 };
 declare module "tezx" {
-    interface BaseContext<T extends Record<string, any> = {}, Path extends string = any> {
+    interface BaseContext<TEnv extends Record<string, any> = {}, TPath extends string = any> {
         google: {
             oauth_url: string;
             user?: GoogleUser;

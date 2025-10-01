@@ -25,7 +25,6 @@ In your TezX app entry (e.g., `server.ts` or `index.ts`):
 
 ```ts
 import { TezX } from "tezx";
-import {nodeAdapter} from "tezx/node";
 import DevTools from "@tezx/devtools";
 
 const app = new TezX();
@@ -39,7 +38,6 @@ app.get(
   })
 );
 
-nodeAdapter(app).listen(3000);
 ```
 
 Now visit:
@@ -71,35 +69,6 @@ DevTools(app: TezX<any>, options?: Options): Callback
 | ------------- | --------------------------------------------------------- | ----------------------- |
 | `extraTabs`   | `(ctx) => TabType \| Promise<TabType>`                    | Add your own tab panels |
 | `disableTabs` | `Array<'cookies' \| 'routes' \| '.env' \| 'middlewares'>` | Hide built-in tabs      |
-
----
-
-## 🛠️ Add Custom Tabs
-
-You can inject your own debug panels using the `extraTabs` option.
-
-```ts
-import DevTools , { dumpMiddlewares } from "@tezx/devtools";
-
-app.get(
-  "/devtools",
-  DevTools(app, {
-    extraTabs(ctx) {
-      const rows = dumpMiddlewares(app)
-        .map(r => `<tr><td>${r.endpoint}</td><td>${r.pattern}</td><td>${r.appliedMiddlewares}</td></tr>`)
-        .join("");
-      return [
-        {
-          tab: "middlewares",
-          label: "Middleware Table",
-          doc_title: "Middleware Overview",
-          content: `<table>${rows}</table>`
-        }
-      ];
-    }
-  })
-);
-```
 
 ---
 
