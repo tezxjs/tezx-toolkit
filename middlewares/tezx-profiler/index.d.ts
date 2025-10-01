@@ -1,13 +1,14 @@
 import { Middleware } from 'tezx';
 
-/**
- * Options for configuring the profiler.
- */
 type ProfilerOptions = {
     /**
      * Optional name for the profiled block or operation.
      */
     name?: string;
+    /**
+     * @property enableProfiler - Enables or disables the profiler.
+     */
+    enableProfiler?: boolean;
     /**
      * Whether to log profiling results automatically.
      * Defaults to `true`.

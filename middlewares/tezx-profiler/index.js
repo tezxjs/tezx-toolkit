@@ -8,12 +8,19 @@ function profiler(options = {}) {
   const {
     route = "/__profiler",
     excludePaths = [],
+    enableProfiler = true,
     disableRoute = false,
     metrics = ["time", "memory"],
     storage,
     plugins = []
   } = options;
   return async (ctx, next) => {
+    if (!enableProfiler) {
+      return ctx.status(403).json({
+        success: false,
+        message: "Profiler is disabled in this environment."
+      });
+    }
     if (ctx.req.pathname === route && !disableRoute) {
       const systemStats = {
         uptime: process?.uptime(),
