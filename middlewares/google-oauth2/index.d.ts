@@ -49,7 +49,7 @@ type OAuthURLParams = {
  * @param {OAuthURLParams} params - The parameters for generating the OAuth URL.
  * @returns {Middleware<any>} Middleware that redirects to the OAuth URL.
  */
-export declare function getGoogleOAuthURL<T extends Record<string, any> = {}, Path extends string = any>({ scopes, authClient, loginHint, prompt, accessType, includeGrantedScopes, }: OAuthURLParams): Middleware<T, Path>;
+export declare function getGoogleOAuthURL<T extends Record<string, any> = {}, Path extends string = any>({ scopes, authClient, state, loginHint, prompt, accessType, includeGrantedScopes, }: OAuthURLParams): Middleware<T, Path>;
 export type GoogleUser = {
     iss: string;
     azp: string;

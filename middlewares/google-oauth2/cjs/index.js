@@ -10,14 +10,14 @@ function GoogleOauthClient(config) {
     const oauth2Client = new oauth2_1.auth.OAuth2(clientId, clientSecret, redirectUri);
     return oauth2Client;
 }
-function getGoogleOAuthURL({ scopes = ["openid", "email", "profile"], authClient, loginHint, prompt = "consent select_account", accessType = "offline", includeGrantedScopes = true, }) {
+function getGoogleOAuthURL({ scopes = ["openid", "email", "profile"], authClient, state, loginHint, prompt = "consent select_account", accessType = "offline", includeGrantedScopes = true, }) {
     return (ctx, next) => {
-        let state = `req-${(0, helper_1.generateID)()}`;
-        ctx.setHeader("state", state);
+        let s = state || `req-${(0, helper_1.generateID)()}`;
+        ctx.setHeader("state", s);
         const url = authClient.generateAuthUrl({
             access_type: accessType,
             scope: scopes,
-            state: state,
+            state: s,
             login_hint: loginHint,
             prompt,
             include_granted_scopes: includeGrantedScopes,
