@@ -1,9 +1,26 @@
-import { GlobalConfig } from "tezx/helper";
-import { html as htmlTab } from "./html/index.js";
-export function DevTools(app, options = {
-    disableTabs: [],
-    enable: true,
-}) {
+import { Callback, Context, TezX } from "tezx";
+import { html as htmlTab, Tab, TabType } from "./html/index.js";
+
+/**
+ * Configuration options for the devtools.
+ *
+ * @property extraTabs - A function that receives the current context and returns additional tabs to be displayed. Can return a single tab or a promise resolving to a tab.
+ * @property disableTabs - An array of tabs to be disabled in the UI.
+ * @property enable - Indicates whether the devtools should be enabled. Set to `true` to activate devtools, or `false` to disable (e.g., in production).
+ */
+export type Options = {
+    extraTabs?: (ctx: Context) => Promise<TabType> | TabType;
+    disableTabs?: Tab[];
+    enable?: boolean;
+};
+
+export function DevTools(
+    app: TezX<any>,
+    options: Options = {
+        disableTabs: [],
+        enable: true,
+    },
+): Callback {
     let { disableTabs } = options;
     return async (ctx) => {
         if (!options?.enable) {
@@ -11,16 +28,20 @@ export function DevTools(app, options = {
                 .status(404)
                 .json({ error: "Devtools not enabled in this environment" });
         }
+
         let extraTabs = await (typeof options.extraTabs === "function"
             ? options.extraTabs(ctx)
             : []);
         let html = [
             ...(disableTabs?.length
-                ? htmlTab(ctx, app)?.filter((r) => !disableTabs?.includes(r?.tab))
+                ? htmlTab(ctx, app)?.filter(
+                    (r) => !disableTabs?.includes(r?.tab as Tab),
+                )
                 : htmlTab(ctx, app)),
             ...extraTabs,
         ];
         let tab = ctx.req.query?._tab || html?.[0]?.tab;
+
         const navbar = `
          <header>
             <div class="tabs">
@@ -31,14 +52,12 @@ export function DevTools(app, options = {
             </div>
             <div class="tabs">
                 <a class="toggle-dark" onclick="toggleTheme()">🌙 Toggle Dark</a>
-                <a class="active">
-                  ${GlobalConfig.adapter}
-                </a>
             </div>
         </header>
         `;
         let find = html.find((r) => r?.tab == tab);
-        return ctx.html `
+
+        return ctx.html(`
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -397,7 +416,7 @@ export function DevTools(app, options = {
                 </script>
     </body>
 </html>
-  `;
+  `);
     };
 }
 export default DevTools;

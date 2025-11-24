@@ -1,9 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.DevTools = DevTools;
-const helper_1 = require("tezx/helper");
-const index_js_1 = require("./html/index.js");
-function DevTools(app, options = {
+import { html as htmlTab } from "./html/index.js";
+export function DevTools(app, options = {
     disableTabs: [],
     enable: true,
 }) {
@@ -19,8 +15,8 @@ function DevTools(app, options = {
             : []);
         let html = [
             ...(disableTabs?.length
-                ? (0, index_js_1.html)(ctx, app)?.filter((r) => !disableTabs?.includes(r?.tab))
-                : (0, index_js_1.html)(ctx, app)),
+                ? htmlTab(ctx, app)?.filter((r) => !disableTabs?.includes(r?.tab))
+                : htmlTab(ctx, app)),
             ...extraTabs,
         ];
         let tab = ctx.req.query?._tab || html?.[0]?.tab;
@@ -34,14 +30,11 @@ function DevTools(app, options = {
             </div>
             <div class="tabs">
                 <a class="toggle-dark" onclick="toggleTheme()">🌙 Toggle Dark</a>
-                <a class="active">
-                  ${helper_1.GlobalConfig.adapter}
-                </a>
             </div>
         </header>
         `;
         let find = html.find((r) => r?.tab == tab);
-        return ctx.html `
+        return ctx.html(`
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -400,7 +393,7 @@ function DevTools(app, options = {
                 </script>
     </body>
 </html>
-  `;
+  `);
     };
 }
-exports.default = DevTools;
+export default DevTools;

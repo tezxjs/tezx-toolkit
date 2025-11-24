@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/helpers/tezx-devtools/app/node_modules
+/helpers/tezx-devtools/app/dist
 /.pnp
 .pnp.js
 

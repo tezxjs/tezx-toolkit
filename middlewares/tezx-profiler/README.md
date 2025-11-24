@@ -163,7 +163,3 @@ app.use(profiler({ storage }));
 - 🌐 Remote profiling dashboard -->
 
 ---
-
-## 📜 License
-
-MIT © 2025 TezX Team

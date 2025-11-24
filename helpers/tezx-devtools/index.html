@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>${find?.doc_title}</title>
+        <style>
+            :root {
+                --bg: #f8f9fa;
+                --text: #212529;
+                --accent: #FF581E;
+                --header-bg: rgba(255, 255, 255, 0.94);
+                --table-bg: #ffffff;
+                --table-border: #d1d5db;
+                /* Gray-300 */
+                --tr-hover: #e3f2fd;
+                /* Light Blue Hover */
+                --tr-odd: #f8fafc;
+                /* Lightest gray-blue */
+                --tr-even: #ffffff;
+            }
+
+            body.dark {
+                --bg: #0e1117;
+                --text: #f1f3f5;
+                --accent: #58a6ff;
+                /* GitHub Blue */
+                --header-bg: rgba(18, 18, 18, 0.9);
+                --table-bg: #161b22;
+                --table-border: #30363d;
+                --tr-hover: #1f6feb33;
+                /* Blue hover with opacity */
+                --tr-odd: #1a1f24;
+                --tr-even: #0f1419;
+
+                --col-1: #9ca3af;
+                /* Gray-400 */
+                --col-2: #58a6ff;
+                /* Blue-300 */
+                --col-3: #4ade80;
+                /* Green-400 */
+                --col-4: #facc15;
+                /* Yellow-400 */
+                --col-5: #c084fc;
+                /* Purple-400 */
+            }
+
+            body {
+                margin: 0;
+                font-family: system-ui, sans-serif;
+                background: var(--bg);
+                color: var(--text);
+                transition: background 0.3s ease, color 0.3s ease;
+            }
+
+
+            header {
+                position: sticky;
+                background: var(--header-bg);
+                border-bottom: 1px solid var(--accent);
+                top: 0px;
+                display: flex;
+                padding: 16px;
+                align-items: center;
+                justify-content: space-between;
+                gap: 6px;
+                flex-wrap: wrap;
+            }
+
+            header>div {
+                display: flex;
+                gap: 6px;
+                align-items: center;
+            }
+
+            .tabs a {
+                padding: 0.4rem 0.8rem;
+                text-decoration: none;
+                border: 1px solid var(--accent);
+                border-radius: 5px;
+                color: var(--accent);
+                cursor: pointer;
+                text-transform: capitalize;
+            }
+
+            .tabs a.active {
+                background-color: var(--accent);
+                color: white;
+            }
+
+
+            .tabs a.counting::after {
+                content: attr(data-count);
+                background: var(--accent);
+                color: white;
+                font-size: 0.7rem;
+                margin-left: 6px;
+                padding: 2px 6px;
+                border-radius: 10px;
+                display: inline-block;
+            }
+
+            .tabs a.counting.active::after {
+                content: attr(data-count);
+                background: white;
+                color: black;
+                font-size: 0.7rem;
+                margin-left: 6px;
+                padding: 2px 6px;
+                border-radius: 10px;
+                display: inline-block;
+            }
+
+            section.content {
+                padding: 16px;
+            }
+
+            h1 {
+                font-size: 1.8rem;
+                margin-top: 0px;
+                margin-bottom: 20px;
+            }
+
+            input[type="text"] {
+                display: inline-flex;
+                margin-top: 16px;
+                padding: 0.5rem;
+                font-size: 1rem;
+                border: 1px solid var(--table-border);
+                border-radius: 6px;
+                max-width: 300px;
+            }
+
+            input[type="text"]:focus {
+                outline: 1px solid var(--accent);
+            }
+
+            .match-true {
+                color: green;
+                font-weight: bold;
+            }
+
+            .match-false {
+                color: red;
+                font-weight: bold;
+            }
+
+            .json-view {
+                margin-top: 16px;
+                white-space: pre-wrap;
+                background: var(--table-bg);
+                padding: 1rem;
+                border: 1px solid var(--table-border);
+                border-radius: 6px;
+                font-family: monospace;
+                max-height: 600px;
+                overflow: auto;
+            }
+
+            .table-container {
+                overflow-x: auto;
+                background: white;
+                border-radius: 0.5rem;
+                box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            }
+
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                background: var(--table-bg);
+                margin-top: 1rem;
+                border: 1px solid var(--table-border);
+            }
+
+            th,
+            td {
+                padding: 0.75rem;
+                text-align: left;
+                border: 1px solid var(--table-border);
+                font-size: 0.95rem;
+            }
+
+            thead {
+                background-color: var(--accent);
+                color: white;
+            }
+
+            /* Light mode zebra striping */
+            tbody tr:nth-child(odd) {
+                background-color: var(--tr-odd);
+            }
+
+            tbody tr:nth-child(even) {
+                background-color: var(--tr-even);
+            }
+
+            /* Hover effect */
+            tbody tr:hover {
+                background-color: var(--tr-hover);
+            }
+
+            .status-true {
+                color: green;
+                font-weight: bold;
+            }
+
+            .status-false {
+                color: red;
+                font-weight: bold;
+            }
+
+            @media (max-width: 768px) {
+
+                table,
+                thead,
+                tbody,
+                th,
+                td,
+                tr {
+                    display: block;
+                }
+
+                thead {
+                    display: none;
+                }
+
+                tr {
+                    margin-bottom: 1rem;
+                    border: 1px solid var(--table-border);
+                    border-radius: 8px;
+                    background: var(--table-bg);
+                }
+
+                td {
+                    display: flex;
+                    justify-content: space-between;
+                    padding: 0.5rem 1rem;
+                    border: none;
+                }
+
+                td::before {
+                    content: attr(data-label);
+                    font-weight: bold;
+                    color: var(--accent);
+                }
+            }
+        </style>
+    </head>
+    <body>
+        ${navbar}
+
+        <section class="content">
+            <h1>
+                ${find?.doc_title}
+            </h1>
+            ${find?.content}
+            <section>
+                <script>
+
+                    const themeCookieName = "tezx-theme";
+
+                    function setCookie(name, value, days = 30) {
+                        const expires = new Date(Date.now() + days * 864e5).toUTCString();
+                        document.cookie = ${ "`${ name }=${ value }; expires = ${ expires }; path =/`" };
+                    }
+                    function getCookie(name) {
+                        return document.cookie.split('; ').reduce((acc, cookie) => {
+                            const [key, val] = cookie.split('=');
+                            return key === name ? decodeURIComponent(val) : acc;
+                        }, null);
+                    }
+
+                    function toggleTheme() {
+                        document.body.classList.toggle('dark');
+                        setCookie(themeCookieName, document.body.classList.contains('dark') ? 'dark' : 'light');
+                    }
+
+                    // Load theme from cookie
+                    window.addEventListener('DOMContentLoaded', () => {
+                        const savedTheme = getCookie(themeCookieName);
+                        if (savedTheme === 'dark') {
+                            document.body.classList.add('dark');
+                        }
+                    });
+                </script>
+    </body>
+</html>

@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.html = html;
 const cookies_js_1 = require("./cookies.js");
-const env_js_1 = require("./env.js");
 const routes_js_1 = require("./routes.js");
 const StaticFile_js_1 = require("./StaticFile.js");
 function html(ctx, app) {
@@ -24,12 +23,6 @@ function html(ctx, app) {
             label: "Cookies",
             doc_title: "DevTools - Cookie Inspector",
             content: (0, cookies_js_1.CookiesInspector)(ctx),
-        },
-        {
-            tab: ".env",
-            label: "Environment",
-            doc_title: "DevTools - Environment",
-            content: (0, env_js_1.EnvInspector)(ctx),
         },
     ];
     return tabDb;

@@ -1,5 +1,4 @@
 import { CookiesInspector } from "./cookies.js";
-import { EnvInspector } from "./env.js";
 import { Routes } from "./routes.js";
 import { StaticFile } from "./StaticFile.js";
 export function html(ctx, app) {
@@ -21,12 +20,6 @@ export function html(ctx, app) {
             label: "Cookies",
             doc_title: "DevTools - Cookie Inspector",
             content: CookiesInspector(ctx),
-        },
-        {
-            tab: ".env",
-            label: "Environment",
-            doc_title: "DevTools - Environment",
-            content: EnvInspector(ctx),
         },
     ];
     return tabDb;

@@ -1,55 +1,38 @@
 {
-  "name": "@tezx/devtools",
-  "version": "1.0.14",
-  "description": "Developer tools for the TezX framework, including route inspector, cookie manager, and real-time diagnostics. Lightweight and plug-and-play compatible with Node.js, Bun, and Deno.",
-  "type": "module",
-  "main": "cjs/index.cjs",
-  "module": "index.js",
-  "types": "index.d.ts",
-  "typings": "index.d.ts",
-  "scripts": {},
+  "name": "tezx-devtools",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build:cjs": "tsc --module CommonJS --outDir package/cjs --removeComments",
+    "build:esm": "tsc --module ESNext --outDir package --removeComments",
+    "build:dts": "tsc --module ESNext --outDir package --declaration --emitDeclarationOnly",
+    "build": "npm run clean && npm run build:cjs && npm run build:esm && npm run build:dts",
+    "bun": "bun run --hot --watch app.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tezxjs/tezx-toolkit.git"
+    "url": "git+https://github.com/srakib17"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tezxjs/tezx-toolkit/issues"
+    "url": "https://github.com/srakib17"
   },
-  "homepage": "https://github.com/tezxjs/tezx-toolkit/tree/main/helpers/tezx-devtools#readme",
   "exports": {
     ".": {
-      "import": "./index.js",
-      "require": "./cjs/index.js",
-      "types": "./index.d.ts"
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
   },
-  "sideEffects": false,
-  "files": [
-    "cjs/",
-    "html/",
-    "index.js",
-    "index.d.ts"
-  ],
-  "keywords": [
-    "devtools",
-    "tezx",
-    "debugging",
-    "developer-tools",
-    "route-inspector",
-    "cookie-manager",
-    "inspector",
-    "nodejs",
-    "bun",
-    "deno"
-  ],
-  "publishConfig": {
-    "access": "public"
+  "homepage": "https://github.com/srakib17",
+  "dependencies": {
+    "tezx": "^4.0.1"
   },
-  "engines": {
-    "node": ">=18",
-    "bun": ">=1.0",
-    "deno": ">=1.36"
-  },
-  "author": "SRAKIB17",
-  "license": "MIT"
+  "devDependencies": {
+    "@types/bun": "^1.3.3"
+  }
 }
