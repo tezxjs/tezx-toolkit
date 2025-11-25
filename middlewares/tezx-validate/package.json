@@ -1,54 +1,39 @@
 {
-    "name": "@tezx/validate",
-    "version": "1.0.0",
-    "type": "module",
-    "main": "index.js",
-    "module": "index.mjs",
-    "types": "index.d.ts",
-    "typings": "index.d.ts",
-    "description": "Schema validation middleware for TezX framework with support for Zod, AJV, Joi and custom adapters.",
-    "keywords": [
-        "tezx",
-        "validate",
-        "middleware",
-        "schema",
-        "zod",
-        "ajv",
-        "joi",
-        "validation",
-        "nodejs",
-        "deno",
-        "bun"
-    ],
-    "license": "MIT",
-    "files": [
-        "index.js",
-        "index.mjs",
-        "index.d.ts"
-    ],
-    "exports": {
-        ".": {
-            "import": "./index.mjs",
-            "require": "./cjs/index.js",
-            "types": "./index.d.ts"
-        }
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/tezxjs/tezx-toolkit"
-    },
-    "author": "TezX Team",
-    "bugs": {
-        "url": "https://github.com/tezxjs/tezx-toolkit/issues"
-    },
-    "homepage": "https://github.com/tezxjs/tezx-toolkit/blob/main/middlewares/tezx-validate/README.md",
-    "engines": {
-        "node": ">=18",
-        "bun": ">=1.0",
-        "deno": ">=1.42"
-    },
-    "sideEffects": false,
-    "publishConfig": {
-        "access": "public"
+  "name": "tezx-example",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "TezX is a high-performance, lightweight JavaScript framework designed for speed, scalability, and flexibility. It enables efficient routing, middleware management, and static file serving with minimal configuration. Fully compatible with Node.js, Deno, and Bun.",
+  "scripts": {
+    "start": "bun dist/index.js",
+    "pk": "pkgroll --clean-dist",
+    "dev": "bun run --hot --watch app.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tezxjs/tezx-app-example"
+  },
+  "keywords": [],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
     }
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tezxjs/tezx-app-example"
+  },
+  "homepage": "https://github.com/tezxjs/tezx-app-example",
+  "dependencies": {
+    "pkgroll": "^2.13.1",
+    "tezx": "^4.0.1",
+    "typescript": "^5.8.2",
+    "zod": "^4.1.12"
+  },
+  "devDependencies": {
+    "@types/bun": "^1.3.3",
+    "@types/node": "^22.13.14"
+  }
 }

@@ -1,0 +1,167 @@
+{
+  "name": "default",
+  "duration": 0.62,
+  "timestamp": "2025-08-03T08:53:49.879Z",
+  "method": "GET",
+  "path": "/",
+  "memoryUsage": {
+    "rss": 0,
+    "heapTotal": 16384,
+    "heapUsed": 0,
+    "external": 0,
+    "arrayBuffers": 0
+  },
+  "cpuUsage": {
+    "user": 307,
+    "system": 283
+  }
+},
+{
+  "name": "default",
+  "duration": 0.19,
+  "timestamp": "2025-08-03T08:54:03.017Z",
+  "method": "GET",
+  "path": "/_profiler",
+  "memoryUsage": {
+    "rss": 0,
+    "heapTotal": 16384,
+    "heapUsed": 0,
+    "external": 0,
+    "arrayBuffers": 0
+  },
+  "cpuUsage": {
+    "user": 139,
+    "system": 0
+  }
+},
+{
+    "user": 380,
+    "system": 245
+  }
+},
+{
+  "name": "default",
+  "duration": 0.44,
+  "timestamp": "2025-07-07T07:18:48.388Z",
+  "method": "GET",
+  "path": "/tezx/package.json",
+  "memoryUsage": {
+    "rss": 0,
+    "heapTotal": -14336,
+    "heapUsed": 0,
+    "external": 2392,
+    "arrayBuffers": 2392
+  },
+  "cpuUsage": {
+    "user": 430,
+    "system": 278
+  }
+},
+{
+  "name": "default",
+  "duration": 0.38,
+  "timestamp": "2025-07-07T07:18:48.540Z",
+  "method": "GET",
+  "path": "/tezx/package.json",
+  "memoryUsage": {
+    "rss": 0,
+    "heapTotal": 2048,
+    "heapUsed": 0,
+    "external": 2392,
+    "arrayBuffers": 2392
+  },
+  "cpuUsage": {
+    "user": 269,
+    "system": 580
+  }
+},
+{
+  "name": "default",
+  "duration": 0.43,
+  "timestamp": "2025-07-07T07:18:49.055Z",
+  "method": "GET",
+  "path": "/tezx/package.json",
+  "memoryUsage": {
+    "rss": 131072,
+    "heapTotal": 2048,
+    "heapUsed": 0,
+    "external": 2392,
+    "arrayBuffers": 2392
+  },
+  "cpuUsage": {
+    "user": 418,
+    "system": 270
+  }
+},
+{
+  "name": "default",
+  "duration": 0.46,
+  "timestamp": "2025-07-07T07:18:49.364Z",
+  "method": "GET",
+  "path": "/tezx/package.json",
+  "memoryUsage": {
+    "rss": 0,
+    "heapTotal": -14336,
+    "heapUsed": 0,
+    "external": 2392,
+    "arrayBuffers": 2392
+  },
+  "cpuUsage": {
+    "user": 316,
+    "system": 204
+  }
+},
+{
+  "name": "default",
+  "duration": 0.42,
+  "timestamp": "2025-07-07T07:18:49.541Z",
+  "method": "GET",
+  "path": "/tezx/package.json",
+  "memoryUsage": {
+    "rss": 0,
+    "heapTotal": 2048,
+    "heapUsed": 0,
+    "external": 2392,
+    "arrayBuffers": 2392
+  },
+  "cpuUsage": {
+    "user": 275,
+    "system": 179
+  }
+},
+{
+  "name": "default",
+  "duration": 0.35,
+  "timestamp": "2025-07-07T07:18:49.700Z",
+  "method": "GET",
+  "path": "/tezx/package.json",
+  "memoryUsage": {
+    "rss": 0,
+    "heapTotal": -14336,
+    "heapUsed": 0,
+    "external": 2392,
+    "arrayBuffers": 2392
+  },
+  "cpuUsage": {
+    "user": 0,
+    "system": 439
+  }
+},
+{
+  "name": "default",
+  "duration": 0.34,
+  "timestamp": "2025-07-07T07:18:49.837Z",
+  "method": "GET",
+  "path": "/tezx/package.json",
+  "memoryUsage": {
+    "rss": 0,
+    "heapTotal": 18432,
+    "heapUsed": 0,
+    "external": 2392,
+    "arrayBuffers": 2392
+  },
+  "cpuUsage": {
+    "user": 0,
+    "system": 358
+  }
+},

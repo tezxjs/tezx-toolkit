@@ -1,10 +1,10 @@
-import { Middleware } from 'tezx';
 
-type ProfilerOptions = {
+export type ProfilerOptions = {
     /**
      * Optional name for the profiled block or operation.
      */
     name?: string;
+
     /**
      * @property enableProfiler - Enables or disables the profiler.
      */
@@ -14,20 +14,23 @@ type ProfilerOptions = {
      * Defaults to `true`.
      */
     logResults?: boolean;
+
     /**
      *  If true, disables route-based profiling.
      *  @default false
      */
-    disableRoute?: boolean;
+    disableRoute?: boolean,
     /**
      * The route or path being profiled (e.g., API endpoint).
      */
     route?: string;
+
     /**
      * Paths to exclude from profiling.
      * Useful for ignoring specific routes or operations.
      */
     excludePaths?: string[];
+
     /**
      * Metrics to track during profiling.
      * Supported metrics include:
@@ -36,38 +39,43 @@ type ProfilerOptions = {
      * - `"cpu"`: CPU usage statistics.
      */
     metrics?: ("time" | "memory" | "cpu")[];
+
     /**
      * Custom storage adapter for saving profiling results.
      * Allows integration with databases, files, or other storage systems.
      */
     storage?: StorageAdapter;
+
     /**
      * Plugins for extending the profiler's functionality.
      * Each plugin can define hooks to run before or after profiling.
      */
     plugins?: ProfilerPlugin[];
 };
+
 /**
  * Interface for a storage adapter.
  * Defines the contract for saving profiling results.
  */
-interface StorageAdapter {
+export interface StorageAdapter {
     /**
      * Saves the profiling result to the storage system.
      * @param result - The profiling result to save.
      */
     save(result: ProfileResult): Promise<void>;
 }
+
 /**
  * Interface for a profiler plugin.
  * Allows extending the profiler's behavior with custom logic.
  */
-interface ProfilerPlugin {
+export interface ProfilerPlugin {
     /**
      * Hook that runs before profiling starts.
      * Can be used to initialize resources or capture initial metrics.
      */
     beforeProfile?(): void;
+
     /**
      * Hook that runs after profiling ends.
      * Can be used to process or transform profiling results.
@@ -75,18 +83,21 @@ interface ProfilerPlugin {
      */
     afterProfile?(result: ProfileResult): void;
 }
+
 /**
  * Represents the result of a profiling operation.
  */
-type ProfileResult = {
+export type ProfileResult = {
     /**
      * The name of the profiled block or operation.
      */
     name: string;
+
     /**
      * The duration of the operation in milliseconds.
      */
     duration: number;
+
     /**
      * Memory usage statistics during the operation.
      * Includes details about memory consumption.
@@ -96,23 +107,28 @@ type ProfileResult = {
          * Resident Set Size (RSS): Total memory allocated for the process.
          */
         rss: number;
+
         /**
          * Total heap memory available to the process.
          */
         heapTotal: number;
+
         /**
          * Heap memory currently in use by the process.
          */
         heapUsed: number;
+
         /**
          * Memory used by external objects (e.g., Buffers, Strings).
          */
         external: number;
+
         /**
          * Memory used by ArrayBuffers and related structures.
          */
         arrayBuffers: number;
     };
+
     /**
      * CPU usage statistics during the operation.
      * Includes user and system CPU time.
@@ -122,31 +138,25 @@ type ProfileResult = {
          * User CPU time consumed by the process.
          */
         user: number;
+
         /**
          * System CPU time consumed by the process.
          */
         system: number;
     };
+
     /**
      * The timestamp when the profiling operation was completed.
      */
     timestamp: Date;
+
     /**
      * The path or route being profiled (e.g., API endpoint).
      */
     path: string;
+
     /**
      * The HTTP method associated with the profiled operation (e.g., GET, POST).
      */
     method: string;
 };
-
-declare function profiler<T extends Record<string, any> = {}>(options?: ProfilerOptions): Middleware<T>;
-declare function createRotatingFileStorage(filePath: string, maxSize: number): StorageAdapter;
-
-declare const _default: {
-    profiler: typeof profiler;
-    createRotatingFileStorage: typeof createRotatingFileStorage;
-};
-
-export { type ProfileResult, type ProfilerOptions, type ProfilerPlugin, type StorageAdapter, createRotatingFileStorage, _default as default, profiler };

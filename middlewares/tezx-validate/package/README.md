@@ -117,7 +117,7 @@ app.use("/login", validate({ adapter: joiAdapter }));
 | Option      | Type                                         | Default | Description                                   |          |                                |
 | ----------- | -------------------------------------------- | ------- | --------------------------------------------- | -------- | ------------------------------ |
 | `adapter`   | `SchemaAdapter`                              | —       | Schema validator implementation               |          |                                |
-| `onError`   | `(err: TezXError, ctx: Context) => Response` | —       | Custom error handler                          |          |                                |
+| `onError`   | `(err: Error, ctx: Context) => Response` | —       | Custom error handler                          |          |                                |
 | `source`    | `"body"                                      | "query" | "params"`                                     | `"body"` | Source of data to validate     |
 | `transform` | `(data: any) => any`                         | —       | Optional function to transform validated data |          |                                |
 | `parseBody` | `"json"                                      | "text"  | "formData"`                                   | `"json"` | Parser method for request body |
@@ -126,7 +126,7 @@ app.use("/login", validate({ adapter: joiAdapter }));
 
 ## Error Handling
 
-By default, `validate` will throw a `TezXError` with **status 400** on validation failure. You can provide `onError` to customize the response:
+By default, `validate` will throw a `Error` with **status 400** on validation failure. You can provide `onError` to customize the response:
 
 ```ts
 validate({
@@ -163,14 +163,5 @@ const customAdapter: SchemaAdapter = {
 
 app.use(validate({ adapter: customAdapter }));
 ```
-
----
-
-## Notes
-
-* Works on **Node.js**, **Bun**, and **Edge** runtimes.
-* Can validate `body`, `query`, or `params`.
-* Supports **async schema validation**.
-* Integrates seamlessly with **TezX middleware**.
 
 ---

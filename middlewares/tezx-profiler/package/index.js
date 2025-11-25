@@ -1,8 +1,4 @@
-'use strict';
-
-Object.defineProperty(exports, '__esModule', { value: true });
-
-var helper = require('tezx/helper');
+import { Config } from 'tezx/config';
 
 function profiler(options = {}) {
   const {
@@ -157,7 +153,7 @@ function profiler(options = {}) {
         system: Math.max(0, endCpu.system - startCpu.system)
       };
     }
-    helper.GlobalConfig.debugging.info(`[Profiler] ${ctx.req.method} ${ctx.req.pathname} -> ${result.duration} ms`, result.memoryUsage || "");
+    Config.debugging.info(`[Profiler] ${ctx.req.method} ${ctx.req.pathname} -> ${result.duration} ms`, result.memoryUsage || "");
     if (storage) {
       await storage.save(result);
     }
@@ -169,39 +165,15 @@ function profiler(options = {}) {
 function createRotatingFileStorage(filePath, maxSize) {
   let currentSize = 0;
   let fileWriter;
-  let runtime = helper.Environment.getEnvironment;
   async function openNewFile(path) {
-    if (runtime == "deno") {
-      const file = await Deno.open(path, { create: true, append: true, write: true });
-      fileWriter = {
-        write: (text) => file.write(new TextEncoder().encode(text)).then(() => {
-        }),
-        close: () => Promise.resolve(file.close())
-      };
-    } else if (runtime == "bun") {
-      const file = Bun.file(path);
-      const writer = await file.writer();
-      fileWriter = {
-        write: (text) => Promise.resolve(writer.write(text)).then(() => {
-        }),
-        close: () => Promise.resolve(writer.end()).then(() => {
-        })
-      };
-    } else {
-      const { createWriteStream } = await import('node:fs');
-      const stream = createWriteStream(path, { flags: "a" });
-      fileWriter = {
-        write: async (text) => {
-          return new Promise((resolve, reject) => {
-            stream.write(text, (err) => {
-              if (err) reject(err);
-              else resolve();
-            });
-          });
-        },
-        close: async () => stream.close()
-      };
-    }
+    const file = Bun.file(path);
+    const writer = await file.writer();
+    fileWriter = {
+      write: (text) => Promise.resolve(writer.write(text)).then(() => {
+      }),
+      close: () => Promise.resolve(writer.end()).then(() => {
+      })
+    };
   }
   async function rotateFile() {
     await fileWriter.close?.();
@@ -228,6 +200,4 @@ var index = {
   createRotatingFileStorage
 };
 
-exports.createRotatingFileStorage = createRotatingFileStorage;
-exports.default = index;
-exports.profiler = profiler;
+export { createRotatingFileStorage, index as default, profiler };

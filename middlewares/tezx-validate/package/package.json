@@ -1,0 +1,52 @@
+{
+    "name": "@tezx/validate",
+    "version": "1.0.1",
+    "type": "module",
+    "main": "index.js",
+    "module": "index.mjs",
+    "types": "index.d.ts",
+    "typings": "index.d.ts",
+    "description": "Schema validation middleware for TezX framework with support for Zod, AJV, Joi and custom adapters.",
+    "keywords": [
+        "tezx",
+        "validate",
+        "middleware",
+        "schema",
+        "zod",
+        "ajv",
+        "joi",
+        "validation",
+        "bun"
+    ],
+    "license": "MIT",
+    "files": [
+        "index.js",
+        "index.mjs",
+        "index.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.mjs",
+            "require": "./cjs/index.js",
+            "types": "./index.d.ts"
+        }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tezxjs/tezx-toolkit"
+    },
+    "author": "TezX Team",
+    "bugs": {
+        "url": "https://github.com/tezxjs/tezx-toolkit/issues"
+    },
+    "homepage": "https://github.com/tezxjs/tezx-toolkit/blob/main/middlewares/tezx-validate/README.md",
+    "engines": {
+        "node": ">=18",
+        "bun": ">=1.0",
+        "deno": ">=1.42"
+    },
+    "sideEffects": false,
+    "publishConfig": {
+        "access": "public"
+    }
+}

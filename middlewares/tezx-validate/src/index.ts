@@ -1,10 +1,10 @@
-import { TezXError, Context, Middleware } from 'tezx';
+import { Context, Middleware } from "tezx";
 
 /**
  * Schema adapter interface.
  * Any schema library (Zod, Joi, AJV, etc.) can implement this.
  */
-type SchemaAdapter = {
+export type SchemaAdapter = {
     /**
      * Validates input data and returns the validated value or throws an error.
      * @param data - Input data to validate
@@ -12,36 +12,42 @@ type SchemaAdapter = {
      */
     validate: (data: any) => any | Promise<any>;
 };
+
 /**
  * Options for the `validate` middleware.
  */
-interface ValidateOptions<TOutput> {
+export interface ValidateOptions<TOutput> {
     /**
      * Schema adapter to use for validation.
      */
     adapter: SchemaAdapter;
+
     /**
      * Optional error handler for validation errors.
-     * @param err - TezXError instance
+     * @param err - Error instance
      * @param ctx - Current request context
      * @returns Response or a Promise resolving to Response
      */
-    onError?: (err: TezXError, ctx: Context) => Response | Promise<Response>;
+    onError?: (err: Error, ctx: Context) => Response | Promise<Response>;
+
     /**
      * Source of data to validate. Default is `"body"`.
      */
     source?: "body" | "query" | "params";
+
     /**
      * Optional transformer to modify the validated data before assigning to ctx.validated.
      * @param data - Validated data from schema adapter
      * @returns Transformed data or a Promise resolving to transformed data
      */
     transform?: (data: TOutput) => any | Promise<any>;
+
     /**
      * Parser method for body input. Default is `"json"`.
      */
     parseBody?: "json" | "text" | "formData";
 }
+
 /**
  * Middleware for validating request data using a schema adapter.
  * Sets the validated (and optionally transformed) data on `ctx.validated`.
@@ -71,14 +77,52 @@ interface ValidateOptions<TOutput> {
  * });
  * ```
  */
-declare function validate<TOutput, T extends Record<string, any> = {}, Path extends string = any>({ onError, adapter, transform, parseBody, source }: ValidateOptions<TOutput>): Middleware<T, Path>;
+export function validate<TOutput, T extends Record<string, any> = {}, Path extends string = any>({
+    onError,
+    adapter,
+    transform,
+    parseBody = "json",
+    source = "body"
+}: ValidateOptions<TOutput>): Middleware<T, Path> {
+    const parser = parseBody ?? "json";
+
+    return async (ctx, next) => {
+        try {
+            let input: any;
+
+            if (source === "body") {
+                input = await ctx.req[parser]();
+            } else if (source === "query") {
+                input = ctx?.req?.query;
+            } else if (source === "params") {
+                input = ctx.req.params; // assuming params are pre-parsed
+            } else {
+                ctx.status(400)
+                throw new Error("Invalid source option");
+            }
+
+            const validated = await adapter.validate(input);
+            const finalData = transform ? await transform(validated) : validated;
+
+            ctx.validated = finalData;
+            await next();
+        } catch (err) {
+            const tezErr = err instanceof Error ? err : new Error(err as any);
+
+            if (onError) {
+                return await onError(tezErr, ctx);
+            } else {
+                throw tezErr;
+            }
+        }
+    };
+}
+
 declare module "tezx" {
-    interface BaseContext<TEnv extends Record<string, any> = {}, TPath extends string = any> {
+    interface BaseContext<TPath extends string = any> {
         /**
          * Contains validated data after passing through `validate` middleware.
          */
         validated: any;
     }
 }
-
-export { type SchemaAdapter, type ValidateOptions, validate };

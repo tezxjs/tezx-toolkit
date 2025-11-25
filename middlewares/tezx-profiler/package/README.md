@@ -13,7 +13,6 @@ A lightweight, extensible profiling middleware for the [TezX](https://www.npmjs.
 - 🔌 Plugin hooks (`beforeProfile`, `afterProfile`).
 - 📁 Rotating file storage for logs.
 - ✅ Written in TypeScript with full type safety.
-- 🌍 Supports Node.js, Deno, and Bun environments.
 
 ---
 
@@ -102,7 +101,6 @@ app.use(profiler({ storage }));
 ```
 
 - File automatically rotates when it reaches the configured size.
-- Supports Node.js, Deno, Bun file systems.
 
 ---
 
@@ -145,21 +143,5 @@ app.use(profiler({ storage }));
 
 - `user`: Time spent in user mode (μs)
 - `system`: Time spent in kernel mode (μs)
-
----
-
-## 🔐 Environment Support
-
-✔️ Node.js
-✔️ Deno
-✔️ Bun
-
----
-<!-- 
-## 🔎 Future Enhancements
-
-- 🔄 Redis or database storage adapters
-- 📈 Export metrics in Prometheus format
-- 🌐 Remote profiling dashboard -->
 
 ---

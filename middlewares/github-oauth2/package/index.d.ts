@@ -62,7 +62,7 @@ export type GithubUser = {
     plan: Plan;
 };
 declare module "tezx" {
-    interface BaseContext<T extends Record<string, any> = {}, Path extends string = any> {
+    interface BaseContext<TPath extends string = any> {
         github: {
             oauth_url: string;
             user?: GithubUser;
