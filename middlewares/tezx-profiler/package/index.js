@@ -1,5 +1,3 @@
-import { Config } from 'tezx/config';
-
 function profiler(options = {}) {
   const {
     route = "/__profiler",
@@ -153,7 +151,6 @@ function profiler(options = {}) {
         system: Math.max(0, endCpu.system - startCpu.system)
       };
     }
-    Config.debugging.info(`[Profiler] ${ctx.req.method} ${ctx.req.pathname} -> ${result.duration} ms`, result.memoryUsage || "");
     if (storage) {
       await storage.save(result);
     }
