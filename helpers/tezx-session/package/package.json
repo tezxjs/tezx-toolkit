@@ -1,0 +1,47 @@
+{
+    "name": "@tezx/session",
+    "version": "1.0.5",
+    "type": "module",
+    "description": "A simple and extensible session middleware for TezX framework with pluggable storage and secure cookie support.",
+    "keywords": [
+        "tezx",
+        "session",
+        "middleware",
+        "typescript",
+        "cookie",
+        "storage",
+        "redis"
+    ],
+    "license": "MIT",
+    "main": "index.js",
+    "module": "index.mjs",
+    "types": "index.d.ts",
+    "files": [
+        "index.js",
+        "index.mjs",
+        "index.d.ts"
+    ],
+    "exports": {
+        ".": {
+            "import": "./index.mjs",
+            "require": "./index.js",
+            "types": "./index.d.ts"
+        }
+    },
+    "sideEffects": false,
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/tezxjs/tezx-toolkit"
+    },
+    "bugs": {
+        "url": "https://github.com/tezxjs/tezx-toolkit/issues"
+    },
+    "homepage": "https://github.com/tezxjs/tezx-toolkit/blob/main/helpers/tezx-session/README.md",
+    "engines": {
+        "node": ">=18",
+        "bun": ">=1.0"
+    },
+    "publishConfig": {
+        "access": "public"
+    }
+}

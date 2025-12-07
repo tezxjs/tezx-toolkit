@@ -13,7 +13,7 @@ type LoadPermissionsFn<T extends string[]> = (ctx: Context) => Promise<RolePermi
 type OnDenyFn<T extends string[]> = (error: DenyError<T>, ctx: Context) => Response | Promise<Response>;
 type IsAuthorizedFn<T extends string[]> = (role: string[], permissions: T, ctx: Context) => Promise<boolean> | boolean;
 declare module "tezx" {
-    interface BaseContext<T = {}> {
+    interface BaseContext {
         isAuthorized?: IsAuthorizedFn<any>;
         onDeny?: OnDenyFn<any>;
         user?: {
@@ -31,9 +31,10 @@ interface PluginConfig<T extends string[]> {
 }
 declare class RBAC<T extends string[]> {
     plugin: (config: PluginConfig<T>) => Middleware<any>;
-    authorize: (permissionKey: T[number]) => Middleware<T>;
+    authorize: (permissionKey: T[number]) => Middleware<any, any>;
 }
 declare function plugin<T extends string[] = any>(config: PluginConfig<T>): Middleware<any>;
-declare function authorize<T extends string[] = any>(permissionKey: T[number]): Middleware<T>;
+declare function authorize<T extends string[] = any>(permissionKey: T[number]): Middleware<any, any>;
 
-export { type DenyError, type IsAuthorizedFn, type LoadPermissionsFn, type OnDenyFn, type Role, type RolePermissionMap, authorize, RBAC as default, plugin };
+export { authorize, RBAC as default, plugin };
+export type { DenyError, IsAuthorizedFn, LoadPermissionsFn, OnDenyFn, Role, RolePermissionMap };

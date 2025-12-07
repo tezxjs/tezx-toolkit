@@ -1,40 +1,35 @@
 {
-  "name": "@tezx/view-engine",
-  "version": "1.0.7",
-  "description": "A flexible and powerful template rendering engine for Tezx with SSR support and cross-runtime compatibility (Node, Bun, Deno).",
+  "name": "@tezx/rbac",
+  "version": "1.0.2",
+  "description": "🔐 Flexible Role-Based Access Control (RBAC) middleware for the TezX framework with support for dynamic role IDs.",
   "type": "module",
   "main": "index.js",
   "module": "index.mjs",
   "types": "index.d.ts",
   "typings": "index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./index.mjs",
-      "require": "./cjs/index.js",
-      "types": "./index.d.ts"
-    }
-  },
-  "sideEffects": false,
   "files": [
     "index.js",
     "index.mjs",
     "index.d.ts"
   ],
+  "exports": {
+    ".": {
+      "require": "./index.js",
+      "import": "./index.mjs",
+      "types": "./index.d.ts"
+    }
+  },
   "keywords": [
     "tezx",
-    "view-engine",
-    "template",
-    "ssr",
-    "ejs",
-    "pug",
-    "hbs",
-    "mustache",
-    "nunjucks",
-    "bun",
-    "deno",
-    "nodejs",
+    "rbac",
+    "authorization",
+    "middleware",
     "typescript",
-    "renderer"
+    "role-based-access",
+    "plugin",
+    "permissions",
+    "access-control",
+    "auth"
   ],
   "repository": {
     "type": "git",
@@ -43,7 +38,7 @@
   "bugs": {
     "url": "https://github.com/tezxjs/tezx-toolkit/issues"
   },
-  "homepage": "https://github.com/tezxjs/tezx-toolkit/tree/main/helpers/view-engine#readme",
+  "homepage": "https://github.com/tezxjs/tezx-toolkit/tree/main/utilities/tezx-rbac#readme",
   "engines": {
     "node": ">=18",
     "bun": ">=1.0",

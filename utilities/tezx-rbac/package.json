@@ -1,55 +1,37 @@
 {
-  "name": "@tezx/rbac",
-  "version": "1.0.1",
-  "description": "🔐 Flexible Role-Based Access Control (RBAC) middleware for the TezX framework with support for dynamic role IDs.",
+  "name": "tezx-rbac",
+  "version": "1.0.0",
   "type": "module",
-  "main": "index.js",
-  "module": "index.mjs",
-  "types": "index.d.ts",
-  "typings": "index.d.ts",
-  "files": [
-    "index.js",
-    "index.mjs",
-    "index.d.ts"
-  ],
-  "exports": {
-    ".": {
-      "require": "./index.js",
-      "import": "./index.mjs",
-      "types": "./index.d.ts"
-    }
+  "description": "TezX is a high-performance, lightweight JavaScript framework designed for speed, scalability, and flexibility. It enables efficient routing, middleware management, and static file serving with minimal configuration. Fully compatible with Bun.",
+  "scripts": {
+    "pk": "pkgroll --clean-dist",
+    "dev": "bun run --hot --watch index.ts"
   },
-  "keywords": [
-    "tezx",
-    "rbac",
-    "authorization",
-    "middleware",
-    "typescript",
-    "role-based-access",
-    "plugin",
-    "permissions",
-    "access-control",
-    "auth"
-  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/tezxjs/tezx-toolkit.git"
+    "url": "git+https://github.com/tezxjs/tezx-app-example"
   },
+  "keywords": [],
+  "exports": {
+    ".": {
+      "require": "./dist/index.js",
+      "import": "./dist/index.mjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "author": "",
+  "license": "ISC",
   "bugs": {
-    "url": "https://github.com/tezxjs/tezx-toolkit/issues"
+    "url": "https://github.com/tezxjs/tezx-app-example"
   },
-  "homepage": "https://github.com/tezxjs/tezx-toolkit/tree/main/utilities/tezx-rbac#readme",
-  "engines": {
-    "node": ">=18",
-    "bun": ">=1.0",
-    "deno": ">=1.36"
+  "homepage": "https://github.com/tezxjs/tezx-app-example",
+  "dependencies": {
+    "@types/bun": "^1.3.3",
+    "pkgroll": "^2.13.1",
+    "tezx": "^4.0.7",
+    "typescript": "^5.8.2"
   },
-  "publishConfig": {
-    "access": "public"
-  },
-  "license": "MIT",
-  "author": {
-    "name": "Rakibul Islam",
-    "url": "https://github.com/srakib17"
+  "devDependencies": {
+    "@types/node": "^22.13.14"
   }
 }

@@ -142,7 +142,7 @@ declare class SessionManager<T extends Record<string, any> = {}> {
     *
     * @returns Middleware to load the session from storage.
     */
-    useSession<T extends Record<string, any> = {}>(sessionId?: SessionIdFn): Middleware<T>;
+    useSession<T extends Record<string, any> = {}, Path extends string = any>(): Middleware<T, Path>
     /**
     * Delete a session by its ID from the storage.
     *
@@ -156,7 +156,7 @@ declare class SessionManager<T extends Record<string, any> = {}> {
     destroySession(sessionId: string): Promise<void>;
 }
 declare module "tezx" {
-    interface BaseContext<T = {}> {
+    interface BaseContext {
         session: SessionInstance | undefined;
     }
 }

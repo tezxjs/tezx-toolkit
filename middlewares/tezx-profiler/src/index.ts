@@ -1,6 +1,5 @@
 // profiler.ts
 import { Context, Middleware, NextCallback } from 'tezx';
-import { Config } from "tezx/config";
 import { ProfileResult, ProfilerOptions, ProfilerPlugin, StorageAdapter } from './types.js';
 // Main profiler middleware
 export function profiler<T extends Record<string, any> = {}>(options: ProfilerOptions = {}): Middleware<T> {
@@ -167,8 +166,6 @@ export function profiler<T extends Record<string, any> = {}>(options: ProfilerOp
                 system: Math.max(0, endCpu.system - startCpu.system),
             };
         }
-
-        Config.debugging.info(`[Profiler] ${ctx.req.method} ${ctx.req.pathname} -> ${result.duration} ms`, result.memoryUsage || "")
 
         if (storage) {
             await storage.save(result);

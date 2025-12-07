@@ -34,7 +34,7 @@ function authorize(permissionKey) {
       message: "You do not have access to this resource.",
       permission: permissionKey
     };
-    ctx.setStatus = 403;
+    ctx.status(403);
     if (ctx.onDeny) {
       return await ctx.onDeny(ctx.body, ctx);
     }
