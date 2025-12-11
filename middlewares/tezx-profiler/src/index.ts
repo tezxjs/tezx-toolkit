@@ -185,7 +185,7 @@ export function createRotatingFileStorage(filePath: string, maxSize: number): St
 
     async function openNewFile(path: string) {
         const file = Bun.file(path);
-        const writer = await file.writer();
+        const writer = file.writer();
         fileWriter = {
             write: (text) => Promise.resolve(writer.write(text)).then(() => { }),
             close: () => Promise.resolve(writer.end()).then(() => { })
