@@ -8,7 +8,7 @@ type RouteMap = Record<
 >;
 
 export function Routes(ctx: Context, app: TezX) {
-  const routeMap: RouteMap = (app as any).route.reduce((acc: any, curr: any) => {
+  const routeMap: RouteMap = (app as any).routes.reduce((acc: any, curr: any) => {
     const { pattern, method, handlers } = curr;
     if (!acc[pattern]) acc[pattern] = {};
     acc[pattern][method] = handlers;

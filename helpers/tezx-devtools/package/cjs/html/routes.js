@@ -2,7 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Routes = Routes;
 function Routes(ctx, app) {
-    const routeMap = app.route.reduce((acc, curr) => {
+    const routeMap = app.routes.reduce((acc, curr) => {
         const { pattern, method, handlers } = curr;
         if (!acc[pattern])
             acc[pattern] = {};

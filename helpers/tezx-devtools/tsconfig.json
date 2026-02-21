@@ -3,6 +3,9 @@
     "outDir": "./dist",
     "module": "CommonJS",
     "target": "ESNext",
+    "lib": [
+      "ES2023"
+    ],
     "moduleResolution": "Node",
     // "declaration": true,
     "jsx": "react-jsx",
